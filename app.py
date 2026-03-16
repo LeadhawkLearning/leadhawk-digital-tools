@@ -841,12 +841,12 @@ SURVEY_HTML = r"""
           </div>
 
           <div class="cta-card">
-            <h3><span class="next-step-highlight">Next Step:</span> <span class="cta-tool-name">Use the Digital Reputation Checker</span></h3>
-            <p class="cta-copy">Your score identified the gap. Now use the <span class="cta-tool-inline">Digital Reputation Checker</span> to see the signal your real posts, comments, captions, messages, screenshots, or photos may be sending.</p>
-            <p class="cta-highlight">Next, click <span class="cta-tool-inline">Digital Reputation Checker</span> to discover how your digital behavior may be interpreted by others.</p>
+            <h3><span class="next-step-highlight">Next Step:</span> <span class="cta-tool-name">Use the Digital Reputation Assessment</span></h3>
+            <p class="cta-copy">Your score identified the gap. Now use the <span class="cta-tool-inline">Digital Reputation Assessment</span> to see the signal your real posts, comments, captions, messages, screenshots, or photos may be sending.</p>
+            <p class="cta-highlight">Next, click <span class="cta-tool-inline">Digital Reputation Assessment</span> to discover how your digital behavior may be interpreted by others.</p>
 
             <div class="btn-row">
-              <button class="primary-btn" id="ctaBtn" type="button">Digital Reputation Checker</button>
+              <button class="primary-btn" id="ctaBtn" type="button">Digital Reputation Assessment</button>
               <button class="secondary-btn" id="retakeBtn" type="button">Retake My Score</button>
             </div>
           </div>
@@ -884,7 +884,7 @@ CHECKER_HTML = r"""
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Leadhawk Digital Reputation Check</title>
+  <title>Leadhawk Digital Reputation Assessment</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1567,7 +1567,7 @@ CHECKER_HTML = r"""
       </div>
 
       <div class="title-container">
-        <h1>Leadhawk Digital Reputation Check</h1>
+        <h1>Leadhawk Digital Reputation Assessment</h1>
 
         <p class="tagline">
           <span class="highlight">Before you post it, check it.</span><br>
@@ -1587,10 +1587,10 @@ CHECKER_HTML = r"""
     </div>
 
     <div class="promo">
-      <strong>Test Your Reputation Signals</strong>
+      <strong>Test Your Digital Reputation</strong>
       <div class="promo-line-2">
         Run two reputation tests to see how your posts, captions, messages, comments, or images may be interpreted — then unlock
-        <span class="promo-emphasis">Unlimited Reputation Checks</span> by completing the
+        <span class="promo-emphasis">Unlimited Reputation Assessments</span> by completing the
         <a class="pyb-link" href="{{ pyb_url }}" target="_blank">Protect Your Brand Challenge</a>.
       </div>
     </div>
@@ -1697,7 +1697,7 @@ CHECKER_HTML = r"""
           <p class="next-step-copy">
             You’ve used your two Reputation Signal Tests. Continue with the
             <span class="next-step-inline">Protect Your Brand Challenge</span>
-            to strengthen your digital behavior and unlock Unlimited Reputation Checks.
+            to strengthen your digital behavior and unlock Unlimited Reputation Assessments.
           </p>
           <p class="next-step-statement">
             Your score identified the gap. Your signal tests exposed how your words may be interpreted.
@@ -1989,7 +1989,7 @@ CHECKER_HTML = r"""
 
           <div class="share-box">
             <strong>Challenge a Friend</strong><br><br>
-            "I just ran my post through the Leadhawk Digital Reputation Check.<br>
+            "I just ran my post through the Leadhawk Digital Reputation Assessment.<br>
             Strength Score: ${data.strength_score}/100.<br>
             Before you post it, check it.<br>
             Try it: ${location.href}"
