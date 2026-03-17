@@ -620,7 +620,7 @@ SURVEY_HTML = r"""
     }
 
     function getBand(score) {
-      return SCORE_BANDS.find(band => score >= band.min and score <= band.max);
+      return SCORE_BANDS.find(band => score >= band.min && score <= band.max);
     }
 
     function getRiskAndStrengths() {
@@ -714,7 +714,7 @@ SURVEY_HTML = r"""
     function renderQuestion() {
       const question = QUESTIONS[state.currentIndex];
       const selectedAnswer = state.answers[state.currentIndex];
-      const progressPercent = (state.currentIndex / QUESTIONS.length) * 100;
+      const progressPercent = ((state.currentIndex) / QUESTIONS.length) * 100;
 
       app.innerHTML = `
         <section class="fade-enter">
@@ -2041,10 +2041,11 @@ NEGATIVE_SIGNAL_PATTERNS = {
         r"\bching chong\b", r"\bpaki\b", r"\bwetback\b"
     ],
     "sexual_content": [
-        r"\bhad sex\b", r"\bhave sex\b", r"\bhaving sex\b", r"\bhooked up\b", r"\bhookup\b",
-        r"\bsend nudes\b", r"\bnude\b", r"\bnudes\b", r"\bdick pic\b",
-        r"\bblowjob\b", r"\bpussy\b", r"\bpenis\b", r"\bvagina\b",
-        r"\bnice tits\b", r"\bnice ass\b"
+        r"\bhad sex\b", r"\bhave sex\b", r"\bhaving sex\b", r"\bsex with\b",
+        r"\bhooked up\b", r"\bhookup\b", r"\bsend nudes\b", r"\bnude\b", r"\bnudes\b",
+        r"\bdick pic\b", r"\bblowjob\b", r"\bpussy\b", r"\bpenis\b", r"\bvagina\b",
+        r"\bnice tits\b", r"\bnice ass\b", r"\bfuck goats\b", r"\bgoat fucker\b",
+        r"\bgoat fuckers\b", r"\bfucking goats\b"
     ],
     "abusive_language": [
         r"\basshole\b", r"\bassholes\b", r"\barsehole\b", r"\barseholes\b",
@@ -2056,9 +2057,9 @@ NEGATIVE_SIGNAL_PATTERNS = {
         r"\bqueer\b", r"\basses\b"
     ],
     "profanity": [
-        r"\bfuck\b", r"\bfucks\b", r"\bfucking\b", r"\bfucker\b", r"\bmotherfucker\b",
-        r"\bmother fucker\b", r"\bshit\b", r"\bshits\b", r"\bshitty\b",
-        r"\bbullshit\b", r"\bdamn\b", r"\bhell\b", r"\bass\b",
+        r"\bfuck\b", r"\bfucks\b", r"\bfucking\b", r"\bfucker\b", r"\bfuckers\b",
+        r"\bmotherfucker\b", r"\bmother fucker\b", r"\bshit\b", r"\bshits\b",
+        r"\bshitty\b", r"\bbullshit\b", r"\bdamn\b", r"\bhell\b", r"\bass\b",
         r"\bbadass\b", r"\bbad ass\b", r"\bweakass\b", r"\bweak ass\b",
         r"\bsuckass\b", r"\bsuck ass\b", r"\bpiss off\b"
     ],
@@ -2111,7 +2112,7 @@ NEGATIVE_WEIGHTS = {
     "public_threat": 40,
     "violence": 30,
     "hate_language": 32,
-    "sexual_content": 18,
+    "sexual_content": 20,
     "abusive_language": 20,
     "profanity": 16,
     "reckless_behavior": 12,
@@ -2132,7 +2133,7 @@ NEGATIVE_LABELS = {
     "public_threat": "Public threat or mass-harm language",
     "violence": "Threatening or violent language",
     "hate_language": "Hateful or discriminatory language",
-    "sexual_content": "Sexualized or explicit language",
+    "sexual_content": "Sexualized, explicit, or graphic sexual content",
     "abusive_language": "Name-calling or potentially abusive language",
     "profanity": "Profane or inappropriate language",
     "reckless_behavior": "Reckless or irresponsible behavior signals",
@@ -2188,7 +2189,10 @@ def detect_signal_matches(text):
                 r"\bbeat\b", r"\bbeat them\b", r"\bbeat those\b", r"\bkick ass\b", r"\bkickass\b"
             ]
             if any(re.search(p, lowered, flags=re.IGNORECASE) for p in sport_safe_patterns):
-                violence_patterns = [p for p in patterns if p not in [r"\bkick his ass\b", r"\bkick her ass\b", r"\bbeat his ass\b", r"\bbeat her ass\b"]]
+                violence_patterns = [
+                    p for p in patterns
+                    if p not in [r"\bkick his ass\b", r"\bkick her ass\b", r"\bbeat his ass\b", r"\bbeat her ass\b"]
+                ]
                 if _matches_any_pattern(lowered, violence_patterns):
                     negative_hits.append(signal)
                 continue
@@ -2244,9 +2248,11 @@ def build_negative_labels(negative_hits):
     return labels[:5]
 
 
-def build_summary(score, negative_hits, positive_hits, has_image=False):
+def build_summary(score, negative_hits, positive_hits, has_image=False, limited_image_review=False):
+    if limited_image_review:
+        return "Limited review only. This screenshot may contain text the tool cannot fully interpret from an image alone. Paste the visible text for the most trustworthy result."
     if has_image and not negative_hits:
-        return "No obvious red flags were identified in this image. It appears socially appropriate and relatively low risk based on visible content."
+        return "No obvious visual red flags were identified in this image, but text inside screenshots may still need pasted-text review for a full result."
     if any(sig in negative_hits for sig in SEVERE_NEGATIVE_SIGNALS):
         return "This message creates serious concern about safety, judgment, or trust."
     if "abusive_language" in negative_hits or "profanity" in negative_hits:
@@ -2262,7 +2268,14 @@ def build_summary(score, negative_hits, positive_hits, has_image=False):
     return "This message creates serious concern about safety, maturity, or trust."
 
 
-def build_why_it_matters(score, negative_hits, positive_hits):
+def build_why_it_matters(score, negative_hits, positive_hits, limited_image_review=False):
+    if limited_image_review:
+        return [
+            "A screenshot can contain text, tone, and context that the tool cannot fully read from an image alone.",
+            "If the image contains comments, captions, or messages, those words may carry very different signals than the image itself.",
+            "For the most accurate result, paste the visible text into the text box."
+        ]
+
     reasons = []
 
     if "violence" in negative_hits or "public_threat" in negative_hits:
@@ -2300,7 +2313,13 @@ def build_why_it_matters(score, negative_hits, positive_hits):
     return reasons[:4]
 
 
-def build_safer_alternatives(negative_hits, positive_hits):
+def build_safer_alternatives(negative_hits, positive_hits, limited_image_review=False):
+    if limited_image_review:
+        return [
+            "Paste the visible text from the screenshot into the text box for a stronger review.",
+            "Use image upload as support, not as the only source, when the image contains written comments or captions."
+        ]
+
     alts = []
 
     if "public_threat" in negative_hits or "violence" in negative_hits:
@@ -2313,7 +2332,7 @@ def build_safer_alternatives(negative_hits, positive_hits):
     if "profanity" in negative_hits:
         alts.append("Remove profanity if you want the message to sound more mature and professional.")
     if "sexual_content" in negative_hits:
-        alts.append("Keep intimate or sexual content private and off public-facing platforms.")
+        alts.append("Remove graphic or sexualized language if you want the message to reflect stronger judgment.")
     if "reckless_behavior" in negative_hits:
         alts.append("Avoid language that glorifies risky behavior.")
     if "emotional_reactivity" in negative_hits:
@@ -2329,11 +2348,15 @@ def build_safer_alternatives(negative_hits, positive_hits):
     return alts[:4]
 
 
-def build_next_best_move(score, negative_hits, positive_hits):
+def build_next_best_move(score, negative_hits, positive_hits, limited_image_review=False):
+    if limited_image_review:
+        return "Paste the visible text from this screenshot before relying on this result. That will give you a more trustworthy assessment."
     if "public_threat" in negative_hits or "violence" in negative_hits or "hate_language" in negative_hits:
         return "Do not post this as written. Remove the harmful language completely and rewrite from a calm, responsible place."
     if "abusive_language" in negative_hits or "profanity" in negative_hits:
         return "Rewrite this with more maturity and respect before posting. Removing the harsh language would strengthen the signal immediately."
+    if "sexual_content" in negative_hits:
+        return "Rewrite this to remove the sexual or graphic language if you want the post to reflect stronger judgment and maturity."
     if score < 40:
         return "Step back, remove the strongest risk signals, and rewrite with more self-control."
     if score < 65:
@@ -2341,9 +2364,13 @@ def build_next_best_move(score, negative_hits, positive_hits):
     return "This is fairly safe, but you can strengthen it further with clearer maturity and purpose."
 
 
-def build_improve_note(score, negative_hits, positive_hits):
+def build_improve_note(score, negative_hits, positive_hits, limited_image_review=False):
+    if limited_image_review:
+        return "For screenshots of comments, captions, or posts, the pasted text is what makes this tool most accurate."
     if score >= 85:
         return "Messages like this get even stronger when they show gratitude, purpose, or encouragement."
+    if "sexual_content" in negative_hits:
+        return "Removing the sexual or graphic language would immediately strengthen the signal."
     if "emotional_reactivity" in negative_hits:
         return "A calmer tone would improve the signal quickly."
     if "profanity" in negative_hits or "abusive_language" in negative_hits:
@@ -2359,33 +2386,49 @@ def audience_line(label, interpretation):
     return f"{label}::{interpretation}"
 
 
-def build_audience_interpretations(score, negative_hits, positive_hits):
+def build_audience_interpretations(score, negative_hits, positive_hits, limited_image_review=False):
+    if limited_image_review:
+        return {
+            "parents": audience_line("Parents reviewing this may think", "A screenshot alone may not give enough clarity. The text in the image could change the interpretation significantly."),
+            "coaches": audience_line("Coaches reviewing this may think", "Without the written text pasted in, this is only a partial review and may miss important context."),
+            "admissions": audience_line("Admissions reviewing this may think", "A screenshot can carry risk through words the tool may not fully interpret unless the text is pasted."),
+            "employers": audience_line("Employers reviewing this may think", "This is only a limited review. The written content inside the screenshot matters most.")
+        }
+
     severe = any(sig in negative_hits for sig in SEVERE_NEGATIVE_SIGNALS)
     moderate = any(sig in negative_hits for sig in MODERATE_NEGATIVE_SIGNALS)
 
     if severe:
-      return {
-          "parents": audience_line("Parents reviewing this may think", "This raises serious concern about judgment, safety, and self-control."),
-          "coaches": audience_line("Coaches reviewing this may think", "This signals poor discipline, weak composure, and a major trust concern."),
-          "admissions": audience_line("Admissions reviewing this may think", "This raises major concerns about maturity, judgment, and readiness."),
-          "employers": audience_line("Employers reviewing this may think", "This would be viewed as a serious professionalism and trust problem.")
-      }
+        return {
+            "parents": audience_line("Parents reviewing this may think", "This raises serious concern about judgment, safety, and self-control."),
+            "coaches": audience_line("Coaches reviewing this may think", "This signals poor discipline, weak composure, and a major trust concern."),
+            "admissions": audience_line("Admissions reviewing this may think", "This raises major concerns about maturity, judgment, and readiness."),
+            "employers": audience_line("Employers reviewing this may think", "This would be viewed as a serious professionalism and trust problem.")
+        }
 
     if "abusive_language" in negative_hits or "profanity" in negative_hits:
-      return {
-          "parents": audience_line("Parents reviewing this may think", "This message may raise concerns about maturity, respect, and emotional control."),
-          "coaches": audience_line("Coaches reviewing this may think", "This sounds reactive and disrespectful rather than composed or team-first."),
-          "admissions": audience_line("Admissions reviewing this may think", "This may weaken your image by sounding immature or lacking self-control."),
-          "employers": audience_line("Employers reviewing this may think", "This does not reflect the professionalism or judgment most employers want to see.")
-      }
+        return {
+            "parents": audience_line("Parents reviewing this may think", "This message may raise concerns about maturity, respect, and emotional control."),
+            "coaches": audience_line("Coaches reviewing this may think", "This sounds reactive and disrespectful rather than composed or team-first."),
+            "admissions": audience_line("Admissions reviewing this may think", "This may weaken your image by sounding immature or lacking self-control."),
+            "employers": audience_line("Employers reviewing this may think", "This does not reflect the professionalism or judgment most employers want to see.")
+        }
+
+    if "sexual_content" in negative_hits:
+        return {
+            "parents": audience_line("Parents reviewing this may think", "This may raise concerns about judgment, maturity, and boundaries."),
+            "coaches": audience_line("Coaches reviewing this may think", "This may feel immature or distracting to your reputation."),
+            "admissions": audience_line("Admissions reviewing this may think", "This may weaken perceptions of maturity and decision-making."),
+            "employers": audience_line("Employers reviewing this may think", "This could feel inappropriate or unprofessional depending on the context.")
+        }
 
     if "emotional_reactivity" in negative_hits or "reckless_behavior" in negative_hits or moderate:
-      return {
-          "parents": audience_line("Parents reviewing this may think", "This may suggest reactive judgment or weaker self-control."),
-          "coaches": audience_line("Coaches reviewing this may think", "This may signal inconsistency, impulsiveness, or weak discipline."),
-          "admissions": audience_line("Admissions reviewing this may think", "This creates mixed signals about maturity and judgment."),
-          "employers": audience_line("Employers reviewing this may think", "This may raise concerns about professionalism and reliability.")
-      }
+        return {
+            "parents": audience_line("Parents reviewing this may think", "This may suggest reactive judgment or weaker self-control."),
+            "coaches": audience_line("Coaches reviewing this may think", "This may signal inconsistency, impulsiveness, or weak discipline."),
+            "admissions": audience_line("Admissions reviewing this may think", "This creates mixed signals about maturity and judgment."),
+            "employers": audience_line("Employers reviewing this may think", "This may raise concerns about professionalism and reliability.")
+        }
 
     parents = []
     coaches = []
@@ -2437,29 +2480,22 @@ def analyze_text(text, has_image=False):
     lowered = normalize_text(text)
 
     if has_image and not lowered:
+        score = 50
         return {
-            "strength_score": 90,
-            "category": score_category(90),
-            "result_summary": "No obvious red flags were identified in this photo. It appears socially appropriate and relatively low risk based on visible content.",
-            "top_risks": ["No major red-flag language was clearly identified."],
-            "positive_signals": ["Healthy social context", "No obvious red flags identified"],
-            "why_it_matters": [
-                "A person in authority would likely see this as a normal social, family, or school-related image.",
-                "The visible setting and behavior do not appear to raise obvious professionalism or safety concerns.",
-                "Appropriate photos usually support a more positive digital impression."
+            "strength_score": score,
+            "category": "Limited Review",
+            "result_summary": build_summary(score, [], [], has_image=True, limited_image_review=True),
+            "top_risks": [
+                "Screenshot uploaded without pasted text.",
+                "The tool cannot fully analyze written text inside images yet.",
+                "This result should not be treated as a full reputation review."
             ],
-            "safer_alternatives": [
-                "Keep sharing images that reflect healthy relationships, normal settings, and respectful behavior.",
-                "Before posting, still consider caption, context, and who may view the image."
-            ],
-            "next_best_move": "This image appears appropriate to share, assuming the caption and context also reflect good judgment.",
-            "improve_note": "A strong caption and appropriate context can make an already healthy image feel even more positive.",
-            "audience_interpretations": {
-                "parents": audience_line("Parents reviewing this may think", "This image looks normal and appropriate without obvious red flags."),
-                "coaches": audience_line("Coaches reviewing this may think", "The image itself appears low-risk, and context matters most here."),
-                "admissions": audience_line("Admissions reviewing this may think", "This appears low-risk if the caption and surrounding content are also appropriate."),
-                "employers": audience_line("Employers reviewing this may think", "This appears to be low-risk personal content in an appropriate context.")
-            }
+            "positive_signals": ["Limited image review only"],
+            "why_it_matters": build_why_it_matters(score, [], [], limited_image_review=True),
+            "safer_alternatives": build_safer_alternatives([], [], limited_image_review=True),
+            "next_best_move": build_next_best_move(score, [], [], limited_image_review=True),
+            "improve_note": build_improve_note(score, [], [], limited_image_review=True),
+            "audience_interpretations": build_audience_interpretations(score, [], [], limited_image_review=True)
         }
 
     negative_hits, positive_hits = detect_signal_matches(lowered)
