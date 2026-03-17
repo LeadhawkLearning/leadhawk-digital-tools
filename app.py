@@ -620,7 +620,7 @@ SURVEY_HTML = r"""
     }
 
     function getBand(score) {
-      return SCORE_BANDS.find(band => score >= band.min && score <= band.max);
+      return SCORE_BANDS.find(band => score >= band.min and score <= band.max);
     }
 
     function getRiskAndStrengths() {
@@ -714,7 +714,7 @@ SURVEY_HTML = r"""
     function renderQuestion() {
       const question = QUESTIONS[state.currentIndex];
       const selectedAnswer = state.answers[state.currentIndex];
-      const progressPercent = ((state.currentIndex) / QUESTIONS.length) * 100;
+      const progressPercent = (state.currentIndex / QUESTIONS.length) * 100;
 
       app.innerHTML = `
         <section class="fade-enter">
@@ -1957,7 +1957,7 @@ CHECKER_HTML = r"""
           </div>
 
           <div class="typical-range">
-            Most people who test this tool score between <strong>45–70</strong> depending on tone, clarity, and context.
+            Most people who test this tool score between <strong>40–68</strong> depending on tone, language, and context.
           </div>
 
           ${trendHtml}
@@ -2022,80 +2022,100 @@ CHECKER_HTML = r"""
 </html>
 """
 
-NEGATIVE_SIGNALS = {
-    "violence": [
-        "kill", "attack", "stab", "shoot", "punch", "slap", "smack", "hurt",
-        "fight", "assault", "jump him", "jump her", "kick his ass", "kick her ass",
-        "beat his ass", "beat her ass", "punch him", "punch her", "slap him", "slap her",
-        "kick ass", "kickass"
-    ],
+NEGATIVE_SIGNAL_PATTERNS = {
     "public_threat": [
-        "bomb the school", "shoot up the school", "shoot up this school", "kill everyone",
-        "burn the school down", "attack the school", "blow up the school", "bomb this place",
-        "burn this place down", "shoot up this place"
+        r"\bbomb the school\b", r"\bshoot up the school\b", r"\bshoot up this school\b",
+        r"\bkill everyone\b", r"\bburn the school down\b", r"\battack the school\b",
+        r"\bblow up the school\b", r"\bbomb this place\b", r"\bburn this place down\b",
+        r"\bshoot up this place\b"
+    ],
+    "violence": [
+        r"\bkill\b", r"\battack\b", r"\bstab\b", r"\bshoot\b", r"\bpunch\b", r"\bslap\b",
+        r"\bsmack\b", r"\bhurt\b", r"\bfight\b", r"\bassault\b",
+        r"\bjump him\b", r"\bjump her\b", r"\bkick his ass\b", r"\bkick her ass\b",
+        r"\bbeat his ass\b", r"\bbeat her ass\b", r"\bpunch him\b", r"\bpunch her\b",
+        r"\bslap him\b", r"\bslap her\b"
     ],
     "hate_language": [
-        "nigger", "nigga", "kike", "spic", "faggot", "ching chong", "paki", "wetback"
-    ],
-    "profanity": [
-        "fuck", "fucking", "motherfucker", "mother fucker", "shit", "bullshit", "damn", "hell",
-        "ass", "kick ass", "kickass", "bad ass", "badass", "smart ass", "smartass", "weak ass", "weakass"
-    ],
-    "abusive_language": [
-        "bitch", "asshole", "arsehole", "dumbass", "idiot", "moron", "loser", "trash",
-        "pathetic", "slut", "whore", "hoe", "cunt", "twat", "jerk", "stupid", "ugly",
-        "queer"
+        r"\bnigger\b", r"\bnigga\b", r"\bkike\b", r"\bspic\b", r"\bfaggot\b",
+        r"\bching chong\b", r"\bpaki\b", r"\bwetback\b"
     ],
     "sexual_content": [
-        "had sex", "have sex", "having sex", "hooked up", "hookup", "send nudes",
-        "nude", "nudes", "dick pic", "blowjob", "pussy", "penis", "vagina", "nice tits", "nice ass"
+        r"\bhad sex\b", r"\bhave sex\b", r"\bhaving sex\b", r"\bhooked up\b", r"\bhookup\b",
+        r"\bsend nudes\b", r"\bnude\b", r"\bnudes\b", r"\bdick pic\b",
+        r"\bblowjob\b", r"\bpussy\b", r"\bpenis\b", r"\bvagina\b",
+        r"\bnice tits\b", r"\bnice ass\b"
+    ],
+    "abusive_language": [
+        r"\basshole\b", r"\bassholes\b", r"\barsehole\b", r"\barseholes\b",
+        r"\bdumbass\b", r"\bdumbasses\b", r"\bjackass\b", r"\bjackasses\b",
+        r"\bsmartass\b", r"\bsmartasses\b", r"\bidiot\b", r"\bidiots\b",
+        r"\bmoron\b", r"\bmorons\b", r"\bloser\b", r"\blosers\b",
+        r"\btrash\b", r"\bpathetic\b", r"\bslut\b", r"\bwhore\b", r"\bhoe\b",
+        r"\bcunt\b", r"\btwat\b", r"\bjerk\b", r"\bstupid\b", r"\bugly\b",
+        r"\bqueer\b", r"\basses\b"
+    ],
+    "profanity": [
+        r"\bfuck\b", r"\bfucks\b", r"\bfucking\b", r"\bfucker\b", r"\bmotherfucker\b",
+        r"\bmother fucker\b", r"\bshit\b", r"\bshits\b", r"\bshitty\b",
+        r"\bbullshit\b", r"\bdamn\b", r"\bhell\b", r"\bass\b",
+        r"\bbadass\b", r"\bbad ass\b", r"\bweakass\b", r"\bweak ass\b",
+        r"\bsuckass\b", r"\bsuck ass\b", r"\bpiss off\b"
     ],
     "reckless_behavior": [
-        "drunk", "wasted", "stoned", "blackout", "fight tonight"
+        r"\bdrunk\b", r"\bwasted\b", r"\bstoned\b", r"\bblackout\b", r"\bfight tonight\b"
     ],
     "emotional_reactivity": [
-        "i hate", "hate you", "cant stand", "can't stand", "so mad", "pissed off", "done with you",
-        "sick of you", "screw you", "im done", "i'm done", "whatever", "dont care anymore", "don't care anymore"
+        r"\bi hate\b", r"\bhate you\b", r"\bcant stand\b", r"\bcan't stand\b",
+        r"\bso mad\b", r"\bpissed off\b", r"\bdone with you\b", r"\bsick of you\b",
+        r"\bscrew you\b", r"\bim done\b", r"\bi'm done\b", r"\bwhatever\b",
+        r"\bdont care anymore\b", r"\bdon't care anymore\b"
     ]
 }
 
-POSITIVE_SIGNALS = {
+POSITIVE_SIGNAL_PATTERNS = {
     "gratitude": [
-        "grateful", "thankful", "blessed", "thank you", "thanks for", "appreciate", "so thankful"
+        r"\bgrateful\b", r"\bthankful\b", r"\bblessed\b", r"\bthank you\b",
+        r"\bthanks for\b", r"\bappreciate\b", r"\bso thankful\b"
     ],
     "respect": [
-        "respect", "proud of", "appreciate you", "thankful for", "glad i got to", "honored"
+        r"\brespect\b", r"\bproud of\b", r"\bappreciate you\b", r"\bthankful for\b",
+        r"\bglad i got to\b", r"\bhonored\b"
     ],
     "maturity": [
-        "learned a lot", "lesson learned", "growing", "working on myself", "self control",
-        "trying to improve", "better than i was", "taking responsibility", "ownership"
+        r"\blearned a lot\b", r"\blesson learned\b", r"\bgrowing\b", r"\bworking on myself\b",
+        r"\bself control\b", r"\btrying to improve\b", r"\bbetter than i was\b",
+        r"\btaking responsibility\b", r"\bownership\b"
     ],
     "leadership": [
-        "teammates", "team", "lead", "leadership", "supporting others", "showing up",
-        "committed", "focused", "accountable"
+        r"\bteammates\b", r"\bteam\b", r"\blead\b", r"\bleadership\b", r"\bsupporting others\b",
+        r"\bshowing up\b", r"\bcommitted\b", r"\bfocused\b", r"\baccountable\b"
     ],
     "professionalism": [
-        "opportunity", "career", "work ethic", "professional", "goals", "future", "prepared"
+        r"\bopportunity\b", r"\bcareer\b", r"\bwork ethic\b", r"\bprofessional\b",
+        r"\bgoals\b", r"\bfuture\b", r"\bprepared\b"
     ],
     "encouragement": [
-        "proud of you", "you got this", "keep going", "well done", "great job", "happy for you"
+        r"\bproud of you\b", r"\byou got this\b", r"\bkeep going\b", r"\bwell done\b",
+        r"\bgreat job\b", r"\bhappy for you\b"
     ],
     "positive_connection": [
-        "great time", "good people", "great people", "great atmosphere", "fun night", "love my family",
-        "love my wife", "love my husband", "love my parents", "had a great time", "really enjoyed",
-        "enjoyed the game", "enjoyed the night", "had fun"
+        r"\bgreat time\b", r"\bgood people\b", r"\bgreat people\b", r"\bgreat atmosphere\b",
+        r"\bfun night\b", r"\blove my family\b", r"\blove my wife\b", r"\blove my husband\b",
+        r"\blove my parents\b", r"\bhad a great time\b", r"\breally enjoyed\b",
+        r"\benjoyed the game\b", r"\benjoyed the night\b", r"\bhad fun\b"
     ]
 }
 
 NEGATIVE_WEIGHTS = {
-    "public_threat": 35,
-    "violence": 28,
-    "hate_language": 30,
+    "public_threat": 40,
+    "violence": 30,
+    "hate_language": 32,
     "sexual_content": 18,
-    "abusive_language": 15,
-    "profanity": 12,
-    "reckless_behavior": 10,
-    "emotional_reactivity": 8
+    "abusive_language": 20,
+    "profanity": 16,
+    "reckless_behavior": 12,
+    "emotional_reactivity": 10
 }
 
 POSITIVE_WEIGHTS = {
@@ -2131,64 +2151,57 @@ POSITIVE_LABELS = {
 
 SPORT_CONTEXT_TERMS = [
     "court", "field", "game", "team", "season", "match", "won", "score",
-    "basketball", "football", "baseball", "soccer", "tennis"
+    "basketball", "football", "baseball", "soccer", "tennis", "state"
 ]
+
+SEVERE_NEGATIVE_SIGNALS = {"public_threat", "violence", "hate_language"}
+MODERATE_NEGATIVE_SIGNALS = {"sexual_content", "abusive_language", "profanity", "reckless_behavior", "emotional_reactivity"}
+
 
 def normalize_text(text):
     text = (text or "").lower()
     text = re.sub(r"[-_]", " ", text)
-    text = re.sub(r"[^\w\s]", " ", text)
+    text = re.sub(r"[^\w\s']", " ", text)
     text = re.sub(r"\s+", " ", text).strip()
     return text
 
-def contains_phrase(text, phrase):
-    return phrase in text
-
-def contains_word(text, word):
-    pattern = r"\b" + re.escape(word) + r"\b"
-    return re.search(pattern, text, flags=re.IGNORECASE) is not None
 
 def has_sports_context(text):
     return any(term in text for term in SPORT_CONTEXT_TERMS)
+
+
+def _matches_any_pattern(text, patterns):
+    for pattern in patterns:
+        if re.search(pattern, text, flags=re.IGNORECASE):
+            return True
+    return False
+
 
 def detect_signal_matches(text):
     lowered = normalize_text(text)
     negative_hits = []
     positive_hits = []
 
-    for signal, terms in NEGATIVE_SIGNALS.items():
-        matched = False
-        for term in terms:
-            term_norm = normalize_text(term)
-            if signal == "violence" and term_norm == "beat" and has_sports_context(lowered):
+    for signal, patterns in NEGATIVE_SIGNAL_PATTERNS.items():
+        if signal == "violence" and has_sports_context(lowered):
+            sport_safe_patterns = [
+                r"\bbeat\b", r"\bbeat them\b", r"\bbeat those\b", r"\bkick ass\b", r"\bkickass\b"
+            ]
+            if any(re.search(p, lowered, flags=re.IGNORECASE) for p in sport_safe_patterns):
+                violence_patterns = [p for p in patterns if p not in [r"\bkick his ass\b", r"\bkick her ass\b", r"\bbeat his ass\b", r"\bbeat her ass\b"]]
+                if _matches_any_pattern(lowered, violence_patterns):
+                    negative_hits.append(signal)
                 continue
-            if " " in term_norm:
-                if contains_phrase(lowered, term_norm):
-                    matched = True
-                    break
-            else:
-                if contains_word(lowered, term_norm):
-                    matched = True
-                    break
-        if matched:
+
+        if _matches_any_pattern(lowered, patterns):
             negative_hits.append(signal)
 
-    for signal, terms in POSITIVE_SIGNALS.items():
-        matched = False
-        for term in terms:
-            term_norm = normalize_text(term)
-            if " " in term_norm:
-                if contains_phrase(lowered, term_norm):
-                    matched = True
-                    break
-            else:
-                if contains_word(lowered, term_norm):
-                    matched = True
-                    break
-        if matched:
+    for signal, patterns in POSITIVE_SIGNAL_PATTERNS.items():
+        if _matches_any_pattern(lowered, patterns):
             positive_hits.append(signal)
 
     return negative_hits, positive_hits
+
 
 def score_text(negative_hits, positive_hits):
     score = 70
@@ -2196,7 +2209,14 @@ def score_text(negative_hits, positive_hits):
         score -= NEGATIVE_WEIGHTS.get(sig, 0)
     for sig in positive_hits:
         score += POSITIVE_WEIGHTS.get(sig, 0)
+
+    if "abusive_language" in negative_hits and "profanity" in negative_hits:
+        score -= 4
+    if any(sig in negative_hits for sig in SEVERE_NEGATIVE_SIGNALS):
+        score -= 6
+
     return max(1, min(99, score))
+
 
 def score_category(score):
     if score >= 85:
@@ -2209,11 +2229,13 @@ def score_category(score):
         return "Reputation Risk"
     return "High Concern"
 
+
 def build_positive_labels(positive_hits):
     labels = [POSITIVE_LABELS[s] for s in positive_hits if s in POSITIVE_LABELS]
     if not labels:
         return ["No strong positive reputation signals were clearly identified."]
     return labels[:4]
+
 
 def build_negative_labels(negative_hits):
     labels = [NEGATIVE_LABELS[s] for s in negative_hits if s in NEGATIVE_LABELS]
@@ -2221,9 +2243,14 @@ def build_negative_labels(negative_hits):
         return ["No major red-flag language was clearly identified."]
     return labels[:5]
 
+
 def build_summary(score, negative_hits, positive_hits, has_image=False):
     if has_image and not negative_hits:
         return "No obvious red flags were identified in this image. It appears socially appropriate and relatively low risk based on visible content."
+    if any(sig in negative_hits for sig in SEVERE_NEGATIVE_SIGNALS):
+        return "This message creates serious concern about safety, judgment, or trust."
+    if "abusive_language" in negative_hits or "profanity" in negative_hits:
+        return "This message may be read as disrespectful, immature, or reactive depending on who sees it."
     if score >= 85:
         return "This message appears to send a strong and healthy reputation signal."
     if score >= 65:
@@ -2233,6 +2260,7 @@ def build_summary(score, negative_hits, positive_hits, has_image=False):
     if score >= 20:
         return "This message raises meaningful concerns about reputation, judgment, or self-control."
     return "This message creates serious concern about safety, maturity, or trust."
+
 
 def build_why_it_matters(score, negative_hits, positive_hits):
     reasons = []
@@ -2250,16 +2278,17 @@ def build_why_it_matters(score, negative_hits, positive_hits):
     if "reckless_behavior" in negative_hits:
         reasons.append("This may signal risky decision-making or weak judgment.")
 
-    if "gratitude" in positive_hits:
-        reasons.append("Gratitude usually strengthens perceptions of maturity and appreciation.")
-    if "respect" in positive_hits:
-        reasons.append("Respectful language often improves trust and first impressions.")
-    if "maturity" in positive_hits or "professionalism" in positive_hits:
-        reasons.append("This may communicate self-awareness, responsibility, or future-minded behavior.")
-    if "leadership" in positive_hits:
-        reasons.append("Team-oriented language often suggests leadership and accountability.")
-    if "positive_connection" in positive_hits:
-        reasons.append("Positive shared experiences can support a healthier and more socially appropriate signal.")
+    if not negative_hits:
+        if "gratitude" in positive_hits:
+            reasons.append("Gratitude usually strengthens perceptions of maturity and appreciation.")
+        if "respect" in positive_hits:
+            reasons.append("Respectful language often improves trust and first impressions.")
+        if "maturity" in positive_hits or "professionalism" in positive_hits:
+            reasons.append("This may communicate self-awareness, responsibility, or future-minded behavior.")
+        if "leadership" in positive_hits:
+            reasons.append("Team-oriented language often suggests leadership and accountability.")
+        if "positive_connection" in positive_hits:
+            reasons.append("Positive shared experiences can support a healthier and more socially appropriate signal.")
 
     if not reasons:
         reasons = [
@@ -2270,6 +2299,7 @@ def build_why_it_matters(score, negative_hits, positive_hits):
 
     return reasons[:4]
 
+
 def build_safer_alternatives(negative_hits, positive_hits):
     alts = []
 
@@ -2279,7 +2309,7 @@ def build_safer_alternatives(negative_hits, positive_hits):
     if "hate_language" in negative_hits:
         alts.append("Remove hateful or discriminatory language immediately.")
     if "abusive_language" in negative_hits:
-        alts.append("Replace name-calling with more respectful wording.")
+        alts.append("Replace insults or name-calling with respectful wording.")
     if "profanity" in negative_hits:
         alts.append("Remove profanity if you want the message to sound more mature and professional.")
     if "sexual_content" in negative_hits:
@@ -2298,14 +2328,18 @@ def build_safer_alternatives(negative_hits, positive_hits):
 
     return alts[:4]
 
+
 def build_next_best_move(score, negative_hits, positive_hits):
-    if score < 20:
-        return "Delete or fully rewrite this message before posting anything further."
+    if "public_threat" in negative_hits or "violence" in negative_hits or "hate_language" in negative_hits:
+        return "Do not post this as written. Remove the harmful language completely and rewrite from a calm, responsible place."
+    if "abusive_language" in negative_hits or "profanity" in negative_hits:
+        return "Rewrite this with more maturity and respect before posting. Removing the harsh language would strengthen the signal immediately."
     if score < 40:
         return "Step back, remove the strongest risk signals, and rewrite with more self-control."
     if score < 65:
         return "Tighten the wording so the message sounds more mature, respectful, and intentional."
     return "This is fairly safe, but you can strengthen it further with clearer maturity and purpose."
+
 
 def build_improve_note(score, negative_hits, positive_hits):
     if score >= 85:
@@ -2313,57 +2347,50 @@ def build_improve_note(score, negative_hits, positive_hits):
     if "emotional_reactivity" in negative_hits:
         return "A calmer tone would improve the signal quickly."
     if "profanity" in negative_hits or "abusive_language" in negative_hits:
-        return "Removing harsh or name-calling language would immediately strengthen the reputation signal."
+        return "Removing the harsh language would immediately strengthen how this may be interpreted."
     if "violence" in negative_hits or "public_threat" in negative_hits:
         return "Any threatening wording heavily damages how this may be interpreted."
     if score < 65:
         return "A little more respect, self-control, or clarity could make a noticeable difference."
     return ""
 
+
 def audience_line(label, interpretation):
     return f"{label}::{interpretation}"
 
+
 def build_audience_interpretations(score, negative_hits, positive_hits):
+    severe = any(sig in negative_hits for sig in SEVERE_NEGATIVE_SIGNALS)
+    moderate = any(sig in negative_hits for sig in MODERATE_NEGATIVE_SIGNALS)
+
+    if severe:
+      return {
+          "parents": audience_line("Parents reviewing this may think", "This raises serious concern about judgment, safety, and self-control."),
+          "coaches": audience_line("Coaches reviewing this may think", "This signals poor discipline, weak composure, and a major trust concern."),
+          "admissions": audience_line("Admissions reviewing this may think", "This raises major concerns about maturity, judgment, and readiness."),
+          "employers": audience_line("Employers reviewing this may think", "This would be viewed as a serious professionalism and trust problem.")
+      }
+
+    if "abusive_language" in negative_hits or "profanity" in negative_hits:
+      return {
+          "parents": audience_line("Parents reviewing this may think", "This message may raise concerns about maturity, respect, and emotional control."),
+          "coaches": audience_line("Coaches reviewing this may think", "This sounds reactive and disrespectful rather than composed or team-first."),
+          "admissions": audience_line("Admissions reviewing this may think", "This may weaken your image by sounding immature or lacking self-control."),
+          "employers": audience_line("Employers reviewing this may think", "This does not reflect the professionalism or judgment most employers want to see.")
+      }
+
+    if "emotional_reactivity" in negative_hits or "reckless_behavior" in negative_hits or moderate:
+      return {
+          "parents": audience_line("Parents reviewing this may think", "This may suggest reactive judgment or weaker self-control."),
+          "coaches": audience_line("Coaches reviewing this may think", "This may signal inconsistency, impulsiveness, or weak discipline."),
+          "admissions": audience_line("Admissions reviewing this may think", "This creates mixed signals about maturity and judgment."),
+          "employers": audience_line("Employers reviewing this may think", "This may raise concerns about professionalism and reliability.")
+      }
+
     parents = []
     coaches = []
     admissions = []
     employers = []
-
-    if "violence" in negative_hits or "public_threat" in negative_hits:
-        parents.append("This sounds like a serious loss of self-control or a safety concern.")
-        coaches.append("This signals poor composure, weak discipline, or a problem under pressure.")
-        admissions.append("This raises major concerns about judgment and maturity.")
-        employers.append("This is a serious professionalism and trust concern.")
-
-    if "hate_language" in negative_hits:
-        parents.append("This language is deeply disrespectful and concerning.")
-        coaches.append("This could damage team culture and leadership trust.")
-        admissions.append("This reflects unacceptable character-related risk.")
-        employers.append("This would be a serious workplace culture concern.")
-
-    if "abusive_language" in negative_hits or "profanity" in negative_hits:
-        parents.append("This sounds disrespectful, impulsive, or immature.")
-        coaches.append("This shows emotional reactivity rather than composure.")
-        admissions.append("This weakens professionalism and self-control.")
-        employers.append("This language does not reflect workplace professionalism.")
-
-    if "sexual_content" in negative_hits:
-        parents.append("This shows poor judgment or weak boundaries.")
-        coaches.append("This is immature and distracting to reputation.")
-        admissions.append("This raises concerns about maturity and judgment.")
-        employers.append("This feels inappropriate and unprofessional.")
-
-    if "reckless_behavior" in negative_hits:
-        parents.append("This reflects risky decision-making.")
-        coaches.append("This weakens accountability and trust.")
-        admissions.append("This is a maturity warning sign.")
-        employers.append("This creates concern about reliability and responsibility.")
-
-    if "emotional_reactivity" in negative_hits:
-        parents.append("This sounds emotionally reactive instead of thoughtful.")
-        coaches.append("This shows difficulty handling pressure or conflict.")
-        admissions.append("This raises questions about emotional maturity.")
-        employers.append("This suggests weak composure under stress.")
 
     if "gratitude" in positive_hits:
         parents.append("This shows appreciation and perspective.")
@@ -2399,11 +2426,12 @@ def build_audience_interpretations(score, negative_hits, positive_hits):
         return " ".join(items[:2]) if items else fallback
 
     return {
-        "parents": audience_line("Parents reviewing this may think", fallback_or_join(parents, "This message reflects your maturity, respect, and self-control.")),
-        "coaches": audience_line("Coaches reviewing this may think", fallback_or_join(coaches, "This message signals discipline, leadership, and composure.")),
-        "admissions": audience_line("Admissions reviewing this may think", fallback_or_join(admissions, "This message reflects your maturity, judgment, and readiness.")),
-        "employers": audience_line("Employers reviewing this may think", fallback_or_join(employers, "This message reflects your professionalism, reliability, and character."))
+        "parents": audience_line("Parents reviewing this may think", fallback_or_join(parents, "This message appears relatively safe if the tone and context stay respectful.")),
+        "coaches": audience_line("Coaches reviewing this may think", fallback_or_join(coaches, "This message appears reasonably controlled and low-risk.")),
+        "admissions": audience_line("Admissions reviewing this may think", fallback_or_join(admissions, "This appears relatively safe, though context still matters.")),
+        "employers": audience_line("Employers reviewing this may think", fallback_or_join(employers, "This appears relatively low-risk if it fits the broader context of your profile."))
     }
+
 
 def analyze_text(text, has_image=False):
     lowered = normalize_text(text)
@@ -2450,6 +2478,7 @@ def analyze_text(text, has_image=False):
         "audience_interpretations": build_audience_interpretations(score, negative_hits, positive_hits)
     }
 
+
 def build_carry_message(score):
     if score is None:
         return None
@@ -2459,13 +2488,16 @@ def build_carry_message(score):
         return "That suggests some habits may be creating mixed signals. Now test how specific posts may be interpreted."
     return "That suggests your digital reputation may be vulnerable. Now test real posts to see which signals need to change."
 
+
 @app.route("/")
 def home():
     return redirect(url_for("survey"))
 
+
 @app.route("/survey")
 def survey():
     return render_template_string(SURVEY_HTML, checker_url=url_for("checker"))
+
 
 @app.route("/checker")
 def checker():
@@ -2482,9 +2514,11 @@ def checker():
         carry_message=build_carry_message(carry_score)
     )
 
+
 @app.route("/logo")
 def logo():
     return send_from_directory(".", LOGO_FILENAME)
+
 
 @app.route("/manifest.json")
 def manifest():
@@ -2501,10 +2535,12 @@ def manifest():
         ]
     })
 
+
 @app.route("/reset")
 def reset_checks():
     usage_log.clear()
     return "Checks reset."
+
 
 @app.route("/scan", methods=["POST"])
 def scan():
@@ -2513,7 +2549,7 @@ def scan():
     has_image = image is not None and image.filename != ""
 
     if not text and not has_image:
-      return jsonify({"message": "Please paste some text or upload a screenshot first."}), 400
+        return jsonify({"message": "Please paste some text or upload a screenshot first."}), 400
 
     user_ip = request.remote_addr or "unknown"
 
@@ -2539,6 +2575,7 @@ def scan():
     result["checks_remaining"] = max(0, FREE_CHECK_LIMIT - usage_log[user_ip])
 
     return jsonify(result)
+
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5050)
