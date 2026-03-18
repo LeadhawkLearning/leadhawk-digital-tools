@@ -2341,6 +2341,9 @@ def score_text(negative_hits, positive_hits):
     if "sarcasm_contempt" in negative_hits and "dismissive_tone" in negative_hits:
         score -= 3
 
+    if "sarcasm_contempt" in negative_hits and "passive_aggression" in negative_hits:
+        score -= 2
+    
     if any(sig in negative_hits for sig in SEVERE_NEGATIVE_SIGNALS):
         score -= 6
 
