@@ -2158,15 +2158,15 @@ NEGATIVE_SIGNAL_PATTERNS = {
         r"\bokay then\b",
         r"\bcool story\b"
     ],
-   "passive_aggression": [
+    "passive_aggression": [
         r"\bi guess\b",
         r"\bif you say so\b",
         r"\bthat.?s cute\b",
         r"\bhow surprising\b",
-        r"\bI.?m sure\b",
+        r"\bi.?m sure\b",
         r"\bthanks for that\b",
         r"\bnoted\b"
-    ], 
+    ],
 }
 
 POSITIVE_SIGNAL_PATTERNS = {
