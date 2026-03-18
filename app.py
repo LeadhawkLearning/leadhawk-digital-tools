@@ -2228,7 +2228,7 @@ NEGATIVE_WEIGHTS = {
     "abusive_language": 20,
     "profanity": 16,
     "reckless_behavior": 12,
-    "emotional_reactivity": 10
+    "emotional_reactivity": 10,
     "sarcasm_contempt": 14,
     "dismissive_tone": 12,
     "passive_aggression": 10,
@@ -2255,7 +2255,7 @@ NEGATIVE_LABELS = {
     "abusive_language": "Name-calling or potentially abusive language",
     "profanity": "Profane or inappropriate language",
     "reckless_behavior": "Reckless or irresponsible behavior signals",
-    "emotional_reactivity": "Emotionally reactive tone"
+    "emotional_reactivity": "Emotionally reactive tone",
     "sarcasm_contempt": "Sarcastic, contemptuous, or mocking tone",
     "dismissive_tone": "Dismissive or uncaring tone",
     "passive_aggression": "Passive-aggressive wording",
@@ -2280,7 +2280,7 @@ SPORT_CONTEXT_TERMS = [
 ]
 
 SEVERE_NEGATIVE_SIGNALS = {"public_threat", "violence", "hate_language"}
-MODERATE_NEGATIVE_SIGNALS = {"sexual_content", "abusive_language", "profanity", "reckless_behavior", "emotional_reactivity", "sarcasm_contempt", "dismissive_tone", "passive_agression"}
+MODERATE_NEGATIVE_SIGNALS = {"sexual_content", "abusive_language", "profanity", "reckless_behavior", "emotional_reactivity", "sarcasm_contempt", "dismissive_tone", "passive_aggression"}
 
 def normalize_text(text):
     text = (text or "").lower()
