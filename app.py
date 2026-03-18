@@ -2132,7 +2132,41 @@ NEGATIVE_SIGNAL_PATTERNS = {
         r"\bso mad\b", r"\bpissed off\b", r"\bdone with you\b", r"\bsick of you\b",
         r"\bscrew you\b", r"\bim done\b", r"\bi'm done\b", r"\bwhatever\b",
         r"\bdont care anymore\b", r"\bdon't care anymore\b"
-    ]
+    ],
+    "sarcasm_contempt": [
+        r"\bmust be nice\b",
+        r"\bgood for you\b",
+        r"\bgood for you i guess\b",
+        r"\bthat explains a lot\b",
+        r"\bwhat a joke\b",
+        r"\binteresting that\b",
+        r"\bno one asked\b",
+        r"\bthanks for asking\b",
+        r"\bbless your heart\b",
+        r"\byeah right\b",
+        r"\bsure you did\b"
+    ],
+    "dismissive_tone": [
+        r"\bwhatever\b",
+        r"\bget over it\b",
+        r"\bwho cares\b",
+        r"\bcry about it\b",
+        r"\bnot my problem\b",
+        r"\bdo better\b",
+        r"\bfigure it out\b",
+        r"\bthat sounds like a you problem\b",
+        r"\bokay then\b",
+        r"\bcool story\b"
+    ],
+   "passive_aggression": [
+        r"\bi guess\b",
+        r"\bif you say so\b",
+        r"\bthat.?s cute\b",
+        r"\bhow surprising\b",
+        r"\bI.?m sure\b",
+        r"\bthanks for that\b",
+        r"\bnoted\b"
+    ] 
 }
 
 POSITIVE_SIGNAL_PATTERNS = {
@@ -2195,6 +2229,9 @@ NEGATIVE_WEIGHTS = {
     "profanity": 16,
     "reckless_behavior": 12,
     "emotional_reactivity": 10
+    "sarcasm_contempt": 10,
+    "dismissive_tone": 9,
+    "passive_aggression": 8,
 }
 
 POSITIVE_WEIGHTS = {
@@ -2219,10 +2256,13 @@ NEGATIVE_LABELS = {
     "profanity": "Profane or inappropriate language",
     "reckless_behavior": "Reckless or irresponsible behavior signals",
     "emotional_reactivity": "Emotionally reactive tone"
+    "sarcasm_contempt": "Sarcastic, contemptuous, or mocking tone",
+    "dismissive_tone": "Dismissive or uncaring tone",
+    "passive_aggression": "Passive-aggressive wording",
 }
 
 POSITIVE_LABELS = {
-     "gratitude": "Gratitude or appreciation",
+    "gratitude": "Gratitude or appreciation",
     "respect": "Respectful or affirming tone",
     "maturity": "Maturity or ownership",
     "leadership": "Leadership or team-oriented language",
@@ -2240,7 +2280,7 @@ SPORT_CONTEXT_TERMS = [
 ]
 
 SEVERE_NEGATIVE_SIGNALS = {"public_threat", "violence", "hate_language"}
-MODERATE_NEGATIVE_SIGNALS = {"sexual_content", "abusive_language", "profanity", "reckless_behavior", "emotional_reactivity"}
+MODERATE_NEGATIVE_SIGNALS = {"sexual_content", "abusive_language", "profanity", "reckless_behavior", "emotional_reactivity", "sarcasm_contempt", "dismissive_tone", "passive_agression"}
 
 def normalize_text(text):
     text = (text or "").lower()
@@ -2288,15 +2328,24 @@ def detect_signal_matches(text):
 
 def score_text(negative_hits, positive_hits):
     score = 70
+
     for sig in negative_hits:
         score -= NEGATIVE_WEIGHTS.get(sig, 0)
+
     for sig in positive_hits:
         score += POSITIVE_WEIGHTS.get(sig, 0)
 
     if "abusive_language" in negative_hits and "profanity" in negative_hits:
         score -= 4
+
+    if "sarcasm_contempt" in negative_hits and "dismissive_tone" in negative_hits:
+        score -= 3
+
     if any(sig in negative_hits for sig in SEVERE_NEGATIVE_SIGNALS):
         score -= 6
+
+    if "empathy" in positive_hits and "supportive_tone" in positive_hits:
+        score += 3
 
     return max(1, min(99, score))
 
@@ -2332,6 +2381,8 @@ def build_summary(score, negative_hits, positive_hits, has_image=False, limited_
         return "This message creates serious concern about safety, judgment, or trust."
     if "abusive_language" in negative_hits or "profanity" in negative_hits:
         return "This message may be read as disrespectful, immature, or reactive depending on who sees it."
+    if "sarcasm_contempt" in negative_hits or "dismissive_tone" in negative_hits or "passive_aggression" in negative_hits:
+        return "This message may sound cold, dismissive, or subtly disrespectful depending on who reads it."
     if "empathy" in positive_hits or "supportive_tone" in positive_hits or "emotional_intelligence" in positive_hits:
         return "This message reflects supportive, thoughtful, and emotionally aware communication."
     if score >= 85:
@@ -2366,7 +2417,13 @@ def build_why_it_matters(score, negative_hits, positive_hits, limited_image_revi
         reasons.append("This may suggest emotional impulsiveness rather than composure.")
     if "reckless_behavior" in negative_hits:
         reasons.append("This may signal risky decision-making or weak judgment.")
-
+    if "sarcasm_contempt" in negative_hits:
+        reasons.append("Sarcasm or contempt can make a message sound immature, mocking, or disrespectful.")
+    if "dismissive_tone" in negative_hits:
+        reasons.append("Dismissive language may suggest low empathy, poor people skills, or weak emotional maturity.")
+    if "passive_aggression" in negative_hits:
+        reasons.append("Passive-aggressive wording can create tension and weaken trust.")
+    
     if not negative_hits:
         if "gratitude" in positive_hits:
             reasons.append("Gratitude usually strengthens perceptions of maturity and appreciation.")
@@ -2418,7 +2475,13 @@ def build_safer_alternatives(negative_hits, positive_hits, limited_image_review=
         alts.append("Avoid language that glorifies risky behavior.")
     if "emotional_reactivity" in negative_hits:
         alts.append("Wait before posting and rewrite the message once emotions settle.")
-
+    if "sarcasm_contempt" in negative_hits:
+        alts.append("Remove sarcastic or mocking wording if you want the message to sound more mature.")
+    if "dismissive_tone" in negative_hits:
+        alts.append("Rewrite the message with more empathy or respect for the other person.")
+    if "passive_aggression" in negative_hits:
+        alts.append("Say what you mean directly and respectfully instead of sounding indirect or resentful.")
+    
     if not negative_hits and positive_hits:
         alts.append("Keep using clear, respectful language that reflects maturity.")
         alts.append("Lean into gratitude, respect, and purpose when you post.")
