@@ -2136,7 +2136,7 @@ NEGATIVE_SIGNAL_PATTERNS = {
 }
 
 POSITIVE_SIGNAL_PATTERNS = {
-    "gratitude": [
+     "gratitude": [
         r"\bgrateful\b", r"\bthankful\b", r"\bblessed\b", r"\bthank you\b",
         r"\bthanks for\b", r"\bappreciate\b", r"\bso thankful\b"
     ],
@@ -2159,13 +2159,30 @@ POSITIVE_SIGNAL_PATTERNS = {
     ],
     "encouragement": [
         r"\bproud of you\b", r"\byou got this\b", r"\bkeep going\b", r"\bwell done\b",
-        r"\bgreat job\b", r"\bhappy for you\b"
+        r"\bgreat job\b", r"\bhappy for you\b", r"\bhang in there\b", r"\bstay strong\b"
     ],
     "positive_connection": [
         r"\bgreat time\b", r"\bgood people\b", r"\bgreat people\b", r"\bgreat atmosphere\b",
         r"\bfun night\b", r"\blove my family\b", r"\blove my wife\b", r"\blove my husband\b",
         r"\blove my parents\b", r"\bhad a great time\b", r"\breally enjoyed\b",
         r"\benjoyed the game\b", r"\benjoyed the night\b", r"\bhad fun\b"
+    ],
+    "empathy": [
+        r"\bi can.?t imagine\b", r"\bthat must be hard\b", r"\bthat sounds hard\b",
+        r"\bi.?m sorry\b", r"\bsorry you.?re dealing with that\b", r"\bsorry to hear that\b",
+        r"\bthinking of you\b", r"\bhere for you\b", r"\byou.?re not alone\b",
+        r"\bif you need anything\b", r"\bdon.?t hesitate to reach out\b", r"\breach out\b",
+        r"\bhow are you holding up\b", r"\btake care of yourself\b"
+    ],
+    "supportive_tone": [
+        r"\blet me know how i can help\b", r"\bi.?m here if you need me\b",
+        r"\bhere if you need anything\b", r"\bglad to help\b", r"\bi.?ve got you\b",
+        r"\bwe.?re here for you\b", r"\byou can count on me\b"
+    ],
+    "emotional_intelligence": [
+        r"\bi understand\b", r"\bi hear you\b", r"\bthat makes sense\b",
+        r"\bi appreciate your honesty\b", r"\bthanks for sharing\b",
+        r"\bI understand how\b", r"\blet.?s talk\b"
     ]
 }
 
@@ -2187,7 +2204,10 @@ POSITIVE_WEIGHTS = {
     "leadership": 10,
     "professionalism": 9,
     "encouragement": 8,
-    "positive_connection": 8
+    "positive_connection": 8,
+    "empathy": 12,
+    "supportive_tone": 10,
+    "emotional_intelligence": 10
 }
 
 NEGATIVE_LABELS = {
@@ -2202,13 +2222,16 @@ NEGATIVE_LABELS = {
 }
 
 POSITIVE_LABELS = {
-    "gratitude": "Gratitude or appreciation",
+     "gratitude": "Gratitude or appreciation",
     "respect": "Respectful or affirming tone",
     "maturity": "Maturity or ownership",
     "leadership": "Leadership or team-oriented language",
     "professionalism": "Goal-oriented or professional language",
     "encouragement": "Encouragement or support",
-    "positive_connection": "Healthy social connection"
+    "positive_connection": "Healthy social connection",
+    "empathy": "Empathy or compassionate language",
+    "supportive_tone": "Supportive or helpful tone",
+    "emotional_intelligence": "Emotional intelligence or thoughtful communication"
 }
 
 SPORT_CONTEXT_TERMS = [
@@ -2309,6 +2332,8 @@ def build_summary(score, negative_hits, positive_hits, has_image=False, limited_
         return "This message creates serious concern about safety, judgment, or trust."
     if "abusive_language" in negative_hits or "profanity" in negative_hits:
         return "This message may be read as disrespectful, immature, or reactive depending on who sees it."
+    if "empathy" in positive_hits or "supportive_tone" in positive_hits or "emotional_intelligence" in positive_hits:
+        return "This message reflects supportive, thoughtful, and emotionally aware communication."
     if score >= 85:
         return "This message appears to send a strong and healthy reputation signal."
     if score >= 65:
@@ -2353,6 +2378,12 @@ def build_why_it_matters(score, negative_hits, positive_hits, limited_image_revi
             reasons.append("Team-oriented language often suggests leadership and accountability.")
         if "positive_connection" in positive_hits:
             reasons.append("Positive shared experiences can support a healthier and more socially appropriate signal.")
+        if "empathy" in positive_hits:
+            reasons.append("Empathy often signals emotional maturity, awareness, and care for others.")
+        if "supportive_tone" in positive_hits:
+            reasons.append("Supportive language can strengthen trust and show healthy relationship skills.")
+        if "emotional_intelligence" in positive_hits:
+            reasons.append("Thoughtful communication often reflects maturity, composure, and sound judgment.")
 
     if not reasons:
         reasons = [
@@ -2466,6 +2497,14 @@ def build_audience_interpretations(score, negative_hits, positive_hits, limited_
             "coaches": audience_line("Coaches reviewing this may think", "This may feel immature or distracting to your reputation."),
             "admissions": audience_line("Admissions reviewing this may think", "This may weaken perceptions of maturity and decision-making."),
             "employers": audience_line("Employers reviewing this may think", "This could feel inappropriate or unprofessional depending on the context.")
+        }
+
+    if "empathy" in positive_hits or "supportive_tone" in positive_hits or "emotional_intelligence" in positive_hits:
+        return {
+            "parents": audience_line("Parents reviewing this may think", "This reflects empathy, maturity, and healthy concern for another person."),
+            "coaches": audience_line("Coaches reviewing this may think", "This sounds supportive, composed, and emotionally aware."),
+            "admissions": audience_line("Admissions reviewing this may think", "This reflects emotional maturity, empathy, and thoughtful communication."),
+            "employers": audience_line("Employers reviewing this may think", "This suggests professionalism, empathy, and strong people skills.")
         }
 
     if "emotional_reactivity" in negative_hits or "reckless_behavior" in negative_hits or moderate:
