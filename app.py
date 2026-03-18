@@ -2166,7 +2166,7 @@ NEGATIVE_SIGNAL_PATTERNS = {
         r"\bI.?m sure\b",
         r"\bthanks for that\b",
         r"\bnoted\b"
-    ] 
+    ], 
 }
 
 POSITIVE_SIGNAL_PATTERNS = {
