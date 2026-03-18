@@ -1115,6 +1115,14 @@ CHECKER_HTML = r"""
       margin-top: 6px;
     }
 
+    .input-guidance {
+      margin-top: 8px;
+      margin-bottom: 0;
+      color: #6B7280;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
     input[type="file"] {
       display: block;
       width: 100%;
@@ -1626,6 +1634,7 @@ CHECKER_HTML = r"""
         <div class="upload-label">Or upload a screenshot/photo:</div>
         <input type="file" name="image" id="image_input" accept=".png,.jpg,.jpeg,.webp">
         <div class="upload-help">Useful for screenshots of comments, DMs, posts, or conversations.</div>
+        <div class="input-guidance">Use either pasted text or an image. If the screenshot contains written text, paste the visible words for the most accurate review.</div>
       </div>
 
       <button class="main-btn" type="submit" id="analyzeBtn">Test My Reputation Signal</button>
@@ -1671,6 +1680,16 @@ CHECKER_HTML = r"""
       }
     }
 
+    function clearForNextPost() {
+      document.getElementById("text_input").value = "";
+      document.getElementById("image_input").value = "";
+      document.getElementById("text_input").placeholder = placeholders[document.getElementById("check_type").value] || placeholders["Post"];
+      currentCheckNumber = 2;
+      updatePostStepUI();
+      document.getElementById("text_input").focus();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     document.querySelectorAll(".check-type-btn").forEach(btn => {
       btn.addEventListener("click", function() {
         document.querySelectorAll(".check-type-btn").forEach(b => b.classList.remove("active"));
@@ -1678,6 +1697,21 @@ CHECKER_HTML = r"""
         document.getElementById("check_type").value = this.dataset.type;
         document.getElementById("text_input").placeholder = placeholders[this.dataset.type] || placeholders["Post"];
       });
+    });
+
+    document.getElementById("image_input").addEventListener("change", function() {
+      if (this.files && this.files.length > 0) {
+        document.getElementById("text_input").value = "";
+      }
+    });
+
+    document.getElementById("text_input").addEventListener("input", function() {
+      if (this.value.trim().length > 0) {
+        const imageInput = document.getElementById("image_input");
+        if (imageInput.value) {
+          imageInput.value = "";
+        }
+      }
     });
 
     function clamp(n, min, max) {
@@ -1706,15 +1740,6 @@ CHECKER_HTML = r"""
           <a class="cta" href="${pyUrl}" target="_blank">Strengthen My Reputation Signals</a>
         </div>
       `;
-    }
-
-    function clearForNextPost() {
-      document.getElementById("text_input").value = "";
-      document.getElementById("image_input").value = "";
-      document.getElementById("text_input").focus();
-      currentCheckNumber = 2;
-      updatePostStepUI();
-      window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function audienceTabsHtml(interpretations) {
@@ -2587,6 +2612,11 @@ def scan():
     if not text and not has_image:
         return jsonify({"message": "Please paste some text or upload a screenshot first."}), 400
 
+    if text and has_image:
+        return jsonify({
+            "message": "Please use either pasted text or an image for one check, not both. If your screenshot contains words, paste the visible text for the most accurate result."
+        }), 400
+
     user_ip = request.remote_addr or "unknown"
 
     if user_ip not in usage_log:
@@ -2615,4 +2645,3 @@ def scan():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5050)
-
