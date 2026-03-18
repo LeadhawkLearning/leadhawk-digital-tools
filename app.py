@@ -2229,9 +2229,9 @@ NEGATIVE_WEIGHTS = {
     "profanity": 16,
     "reckless_behavior": 12,
     "emotional_reactivity": 10
-    "sarcasm_contempt": 10,
-    "dismissive_tone": 9,
-    "passive_aggression": 8,
+    "sarcasm_contempt": 14,
+    "dismissive_tone": 12,
+    "passive_aggression": 10,
 }
 
 POSITIVE_WEIGHTS = {
