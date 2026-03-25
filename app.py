@@ -2740,6 +2740,10 @@ def survey():
 def checker():
     return redirect("https://www.leadhawklearning.com/results")
 
+@app.route("/redirect-test")
+def redirect_test():
+    return redirect("https://www.leadhawklearning.com/results")
+
 @app.route("/checker-unlimited")
 def checker_unlimited():
     return render_checker_page(graduate=True, carry_score=None)
