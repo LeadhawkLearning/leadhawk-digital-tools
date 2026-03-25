@@ -2738,13 +2738,7 @@ def survey():
 
 @app.route("/checker")
 def checker():
-    score_param = request.args.get("score", "").strip()
-    carry_score = int(score_param) if score_param.isdigit() else None
-
-    if carry_score is not None:
-        return redirect(f"https://www.leadhawklearning.com/results?score={carry_score}")
-
-    return render_checker_page(graduate=False, carry_score=None)
+    return redirect("https://www.leadhawklearning.com/results")
 
 @app.route("/checker-unlimited")
 def checker_unlimited():
