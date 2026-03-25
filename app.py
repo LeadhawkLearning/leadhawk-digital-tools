@@ -2738,7 +2738,12 @@ def survey():
 
 @app.route("/checker")
 def checker():
-    return redirect("https://www.leadhawklearning.com/results")
+    score_param = request.args.get("score", "").strip()
+
+    if score_param:
+        return redirect(f"https://www.leadhawklearning.com/your-digital-score-reveal?score={score_param}")
+
+    return render_checker_page(graduate=False, carry_score=None)
 
 @app.route("/redirect-test")
 def redirect_test():
