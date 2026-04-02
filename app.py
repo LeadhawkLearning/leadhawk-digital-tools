@@ -694,7 +694,7 @@ SURVEY_HTML = r"""
           <p class="lede">Take this quick assessment to see how your online habits may be helping — or hurting — your future.</p>
 
           <div class="intro-panel">
-            <p>In less than 90 sec, you’ll get a score, a quick read on your current digital reputation habits, and a clear next step.</p>
+            <p>In about 30 sec, you’ll get a score, a quick read on your current digital reputation habits, and a clear next step.</p>
             <p class="subtle">This quick self-check is designed to raise awareness. It’s a starting point for better digital decisions.</p>
           </div>
 
