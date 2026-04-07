@@ -533,9 +533,9 @@ SURVEY_HTML = r"""
     const SCORE_BANDS = [
       {
         min: 85, max: 100,
-        title: "Strong Digital Presence",
-        interpretation: "Your answers suggest that your online habits are mostly aligned with maturity, judgment, and future opportunity.",
-        meaning: "A strong score doesn’t mean everything online is helping you. The strongest digital reputations are built on awareness, consistency, and regular review."
+        title: "Strong Reputation Signals",
+        interpretation: "Your answers suggest that your online habits are showing positive signals tied to judgment, self-control, and future opportunity.",
+        meaning: "A strong score is a good sign — but reputation is built through patterns. The strongest digital reputations come from awareness, consistency, and intentional choices over time."
       },
       {
         min: 70, max: 84,
