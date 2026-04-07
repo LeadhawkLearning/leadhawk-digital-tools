@@ -819,7 +819,7 @@ SURVEY_HTML = r"""
           </div>
 
           <div class="band-title">${escapeHtml(band.title)}</div>
-          <p class="starting-point">This score is not your final answer. It is your starting point.</p>
+          <p class="starting-point">This score is a snapshot, not the full story.</p>
 
           <p class="lede">${escapeHtml(band.interpretation)}</p>
 
