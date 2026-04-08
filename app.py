@@ -841,15 +841,35 @@ SURVEY_HTML = r"""
           </div>
 
           <div class="cta-card">
-            <h3><span class="next-step-highlight">Next Step:</span> <span class="cta-tool-name">Use the Digital Reputation Assessment</span></h3>
-            <p class="cta-copy">Your score identified the gap. Now use the <span class="cta-tool-inline">Digital Reputation Assessment</span> to see the signal your real posts, comments, captions, messages, screenshots, or photos may be sending.</p>
-            <p class="cta-highlight">Next, click <span class="cta-tool-inline">Digital Reputation Assessment</span> to discover how your digital behavior may be interpreted by others.</p>
 
-            <div class="btn-row">
-              <button class="primary-btn" id="ctaBtn" type="button">Digital Reputation Assessment</button>
-              <button class="secondary-btn" id="retakeBtn" type="button">Retake My Score</button>
-            </div>
-          </div>
+  <h3>Your Score Is a Signal. This Is How You Take Control.</h3>
+
+  <p class="cta-copy">
+    Right now, your digital reputation is being shaped by patterns — not intention.
+  </p>
+
+  <p class="cta-copy">
+    The Protect Your Brand Challenge helps you define what you stand for, evaluate your real digital behavior, and build habits that align your online presence with your future opportunities.
+  </p>
+
+  <p class="cta-highlight">
+    This is how you move from awareness to control.
+  </p>
+
+  <p class="cta-highlight">
+    If your score matters, what you do next matters more.
+  </p>
+
+  <div class="btn-row">
+    <button class="primary-btn" id="ctaBtn" type="button">
+      Start the Protect Your Brand Challenge
+    </button>
+    <button class="secondary-btn" id="retakeBtn" type="button">
+      Retake My Score
+    </button>
+  </div>
+
+</div>
 
           <p class="footer-note">This score is a quick self-assessment designed to raise awareness. It is not a full evaluation of all online activity or platform settings.</p>
         </section>
