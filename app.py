@@ -955,8 +955,8 @@ CHECKER_HTML = r"""
     }
 
     .highlight {
-      color: #F4A100;
-      font-weight: 700;
+    color: #F4A100;
+    font-weight: 700;
     }
 
     .audience-tags {
