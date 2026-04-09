@@ -955,7 +955,7 @@ CHECKER_HTML = r"""
     }
 
     .cta-card .highlight {
-  color: #F4A100 !important;
+  color: #F2C94C !important;
   font-weight: 700;
     }
 
