@@ -871,8 +871,8 @@ SURVEY_HTML = r"""
         </section>
       `;
 
-      document.getElementById("ctaBtn").addEventListener("click", () => {
-        window.location.href = CTA_URL + "?score=" + totalScore;
+      document.getElementById("ctaBtn").addEventListener("click", function() {
+      window.location.href = "https://www.leadhawklearning.com/score-next-step";
       });
 
       document.getElementById("retakeBtn").addEventListener("click", () => {
