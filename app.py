@@ -845,11 +845,11 @@ SURVEY_HTML = r"""
 
   <p class="cta-copy">
     Your results show where your digital reputation stands today.
-    The <span style="color:#F4A100; font-weight:700;">next step</span> is making sure it aligns with your future.
+    The <span style="color:#F2C94C; font-weight:700;">next step</span> is making sure it aligns with your future.
   </p>
 
   <p class="cta-copy">
-    <span style="color:#F4A100; font-weight:700;">Protect Your Brand</span> is a practical, guided challenge that helps you define what you stand for,
+    <span style="color:#F2C94C; font-weight:700;">Protect Your Brand</span> is a practical, guided challenge that helps you define what you stand for,
     evaluate your online behavior, and build habits that strengthen your digital reputation.
   </p>
 
