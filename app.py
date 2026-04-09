@@ -840,17 +840,17 @@ SURVEY_HTML = r"""
             </div>
           </div>
 
-         <div class="cta-card">
+        <div class="cta-card">
   <h3>Your Score Is a Signal. Now Strengthen What It Becomes.</h3>
 
   <p class="cta-copy">
     Your results show where your digital reputation stands today.
-    The next step is making sure it aligns with your future.
+    The <span class="highlight">next step</span> is making sure it aligns with your future.
   </p>
 
   <p class="cta-copy">
-  Your results show where your digital reputation stands today.
-  The <span class="highlight">next step</span> is making sure it aligns with your future.
+    <span class="highlight">Protect Your Brand</span> is a practical, guided challenge that helps you define what you stand for,
+    evaluate your online behavior, and build habits that strengthen your digital reputation.
   </p>
 
   <p class="cta-highlight">
