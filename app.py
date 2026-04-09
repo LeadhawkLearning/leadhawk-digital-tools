@@ -840,35 +840,31 @@ SURVEY_HTML = r"""
             </div>
           </div>
 
-          <div class="cta-card">
-
-  <h3>Your Score Is a Signal. This Is How You Take Control.</h3>
+         <div class="cta-card">
+  <h3>Your Score Is a Signal. Now Strengthen What It Becomes.</h3>
 
   <p class="cta-copy">
-    Right now, your digital reputation is being shaped by patterns — not intention.
+    Your results show where your digital reputation stands today.
+    The next step is making sure it aligns with your future.
   </p>
 
   <p class="cta-copy">
-    The Protect Your Brand Challenge helps you define what you stand for, evaluate your real digital behavior, and build habits that align your online presence with your future opportunities.
+    Protect Your Brand is a practical, guided challenge that helps you define what you stand for,
+    evaluate your online behavior, and build habits that strengthen your digital reputation.
   </p>
 
   <p class="cta-highlight">
-    This is how you move from awareness to control.
-  </p>
-
-  <p class="cta-highlight">
-    If your score matters, what you do next matters more.
+    See how the challenge works and how it helps you take control of what your score becomes.
   </p>
 
   <div class="btn-row">
     <button class="primary-btn" id="ctaBtn" type="button">
-      Start the Protect Your Brand Challenge
+      See How the Challenge Works
     </button>
     <button class="secondary-btn" id="retakeBtn" type="button">
       Retake My Score
     </button>
   </div>
-
 </div>
 
           <p class="footer-note">This score is a quick self-assessment designed to raise awareness. It is not a full evaluation of all online activity or platform settings.</p>
