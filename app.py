@@ -955,8 +955,8 @@ CHECKER_HTML = r"""
     }
 
     .cta-card .highlight {
-      color: #F4A100 !important;
-      font-weight: 700;
+  color: #F4A100 !important;
+  font-weight: 700;
     }
 
     .audience-tags {
