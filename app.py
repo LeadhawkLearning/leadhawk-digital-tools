@@ -849,7 +849,7 @@ SURVEY_HTML = r"""
   </p>
 
   <p class="cta-copy">
-    Protect Your Brand is a practical, guided challenge that helps you define what you stand for,
+    <span class="highlight">Protect Your Brand</span> is a practical, guided challenge that helps you define what you stand for,
     evaluate your online behavior, and build habits that strengthen your digital reputation.
   </p>
 
