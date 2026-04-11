@@ -872,7 +872,7 @@ SURVEY_HTML = r"""
       `;
 
       document.getElementById("ctaBtn").addEventListener("click", function() {
-      window.location.href = `https://www.leadhawklearning.com/score-next-step?score=${state.score}`;
+      `https://www.leadhawklearning.com/score-next-step?score=${state.score}`
       });
 
       document.getElementById("retakeBtn").addEventListener("click", () => {
