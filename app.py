@@ -785,6 +785,7 @@ SURVEY_HTML = r"""
 
     function renderResult() {
       const totalScore = getTotalScore();
+      state.score = totalScore;
       const band = getBand(totalScore);
       const { risks, strengths } = getRiskAndStrengths();
       const markerPosition = getScoreMarkerPosition(totalScore);
