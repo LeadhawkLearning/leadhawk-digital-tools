@@ -872,8 +872,10 @@ SURVEY_HTML = r"""
       `;
 
       document.getElementById("ctaBtn").addEventListener("click", function() {
-      `https://www.leadhawklearning.com/score-next-step?score=${state.score}`
-      });
+      console.log("CTA clicked. state.score =", state.score);
+      alert("Score being sent: " + state.score);
+    window.location.href = `https://www.leadhawklearning.com/score-next-step?score=${state.score}`;
+    });
 
       document.getElementById("retakeBtn").addEventListener("click", () => {
         state.view = "intro";
