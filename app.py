@@ -2757,7 +2757,7 @@ def checker():
     score_param = request.args.get("score", "").strip()
 
     if score_param:
-        return redirect(f"https://www.leadhawklearning.com/your-digital-score-reveal?score={score_param}")
+        return redirect(f"https://www.leadhawklearning.com/next-step?score={score_param}")
 
     return render_checker_page(graduate=False, carry_score=None)
 
