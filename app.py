@@ -1215,20 +1215,23 @@ CHECKER_HTML = r"""
 
     button.main-btn:hover { background: #274D85; }
 
-    button.alt-btn {
-      background: #F2C94C;
-      color: #1B365D;
-      border: none;
-      border-radius: 8px;
-      padding: 12px 18px;
-      margin-top: 14px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 22px;
-      font-family: 'Roboto', Arial, sans-serif;
+  .alt-btn {
+    background: #F2C94C;
+    color: #1B365D;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    margin-top: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 20px;
+    font-family: 'Roboto', Arial, sans-serif;
+    white-space: nowrap;
     }
 
-    button.alt-btn:hover { background: #E6BC3F; }
+.alt-btn:hover {
+    background: #E6BC3F;
+    }
 
     .behavior {
       margin-top: 10px;
