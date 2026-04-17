@@ -855,7 +855,7 @@ SURVEY_HTML = r"""
 <div class="decision-block" style="font-size:20px; line-height:1.6; margin:20px 0;">
   <p>
     Your score shows how you’re being seen.
-    The real question is whether that consistently reflects who you want to be.
+    The real question is whether that consistently reflects who you want to be, especially when others are making decisions based on it.
   </p>
 
   <p>
