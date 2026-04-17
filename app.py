@@ -448,12 +448,12 @@ SURVEY_HTML = r"""
     background: var(--gold);
     color: var(--navy);
     border: none;
-    border-radius: 12px;
+    border-radius: 14px;
     box-shadow: none;
-    font-weight: 700;
-    font-size: 18px;
+    font-weight: 600;
+    font-size: 22px;
     font-family: 'Roboto', Arial, sans-serif;
-    padding: 14px 26px;
+    padding: 16px 32px;
     white-space: nowrap;
     letter-spacing: 0.2px;
 }
