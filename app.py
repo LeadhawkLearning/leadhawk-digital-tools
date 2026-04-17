@@ -869,12 +869,12 @@ SURVEY_HTML = r"""
 </div>
 
         <div class="cta-card">
-  <h3>Your Score Is a Signal. Now Strengthen What It Becomes.</h3>
+  <h3>You’ve Seen Your Score. Now Take Control of What It Becomes.</h3>
 
   <p class="cta-copy">
-    Your results show where your digital reputation stands today.
-    The <span style="color:#F2C94C; font-weight:700;">next step is taking control</span> is making sure it aligns with your future.
-  </p>
+  Your results show where your digital reputation stands today.
+  The <span style="color:#F2C94C; font-weight:700;">next step is taking control</span> to make sure it aligns with your future.
+</p>
 
   <p class="cta-copy">
     <span style="color:#F2C94C; font-weight:700;">Protect Your Brand</span> is a practical, guided challenge that helps you define what you stand for,
