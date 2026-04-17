@@ -873,7 +873,7 @@ SURVEY_HTML = r"""
 
   <p class="cta-copy">
     Your results show where your digital reputation stands today.
-    The <span style="color:#F2C94C; font-weight:700;">next step</span> is making sure it aligns with your future.
+    The <span style="color:#F2C94C; font-weight:700;">next step is taking control</span> is making sure it aligns with your future.
   </p>
 
   <p class="cta-copy">
