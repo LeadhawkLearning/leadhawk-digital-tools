@@ -864,7 +864,7 @@ SURVEY_HTML = r"""
   </p>
 
   <p>
-    <strong>Protect Your Brand is how you take control of it.</strong>
+    <strong>Protect Your Brand is how you take control of it of your reputation.</strong>
   </p>
 </div>
 
@@ -1224,7 +1224,7 @@ CHECKER_HTML = r"""
       margin-top: 14px;
       font-weight: 700;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 20px;
       font-family: 'Roboto', Arial, sans-serif;
     }
 
