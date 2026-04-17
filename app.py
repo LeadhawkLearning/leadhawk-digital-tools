@@ -458,9 +458,9 @@ SURVEY_HTML = r"""
     letter-spacing: 0.3px !important;
 }
 
-    .cta-card .primary-btn:hover {
-    background: #E6BC3F;
-    box-shadow: none;
+ .cta-card .primary-btn:hover {
+    background: darkred !important;
+    box-shadow: none !important;
 }
 
     .cta-card .secondary-btn {
