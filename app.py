@@ -445,22 +445,22 @@ SURVEY_HTML = r"""
     }
 
 .cta-card .primary-btn {
-    background: red !important;
-    color: white !important;
-    border: 4px solid yellow !important;
-    border-radius: 2px !important;
-    box-shadow: none !important;
-    font-weight: 700 !important;
-    font-size: 30px !important;
-    font-family: 'Roboto', Arial, sans-serif !important;
-    padding: 20px 34px !important;
-    white-space: nowrap !important;
-    letter-spacing: 0.3px !important;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    border-radius: 12px;
+    box-shadow: none;
+    font-weight: 700;
+    font-size: 18px;
+    font-family: 'Roboto', Arial, sans-serif;
+    padding: 14px 26px;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
 }
 
- .cta-card .primary-btn:hover {
-    background: darkred !important;
-    box-shadow: none !important;
+.cta-card .primary-btn:hover {
+    background: #E6BC3F;
+    box-shadow: none;
 }
 
     .cta-card .secondary-btn {
