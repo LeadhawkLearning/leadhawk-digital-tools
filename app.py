@@ -444,18 +444,18 @@ SURVEY_HTML = r"""
       font-weight: 900;
     }
 
-    .cta-card .primary-btn {
-    background: var(--gold);
-    color: var(--navy);
-    border: none;
-    border-radius: 8px;
-    box-shadow: none;
-    font-weight: 700;
-    font-size: 20px;
-    font-family: 'Roboto', Arial, sans-serif;
-    padding: 12px 24px;
-    white-space: nowrap;
-    letter-spacing: 0.3px;
+.cta-card .primary-btn {
+    background: red !important;
+    color: white !important;
+    border: 4px solid yellow !important;
+    border-radius: 2px !important;
+    box-shadow: none !important;
+    font-weight: 700 !important;
+    font-size: 30px !important;
+    font-family: 'Roboto', Arial, sans-serif !important;
+    padding: 20px 34px !important;
+    white-space: nowrap !important;
+    letter-spacing: 0.3px !important;
 }
 
     .cta-card .primary-btn:hover {
