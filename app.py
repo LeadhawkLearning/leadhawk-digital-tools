@@ -819,8 +819,20 @@ SURVEY_HTML = r"""
             </div>
           </div>
 
-          <div class="band-title">${escapeHtml(band.title)}</div>
-          <p class="starting-point">This score is a snapshot, not the full story.</p>
+         <div class="band-title">${escapeHtml(band.title)}</div>
+
+          <p class="interpretation">
+          This result reflects how your content may be interpreted,
+          not necessarily what you intended.
+          </p>
+
+        <p class="interpretation">
+        Most people score between 60–80.
+        Strong scores still require consistency to maintain and protect over time.
+        </p>
+        <p class="interpretation" style="font-size:18px; line-height:1.5;">
+        
+        <p class="starting-point">This score is a snapshot, not the full story.</p>
 
           <p class="lede">${escapeHtml(band.interpretation)}</p>
 
@@ -841,6 +853,23 @@ SURVEY_HTML = r"""
             </div>
           </div>
 
+         <div class="decision-block">
+         <p>
+         Your score shows how you’re being seen.
+         The real question is whether that consistently reflects who you want to be.
+        </p>
+        <div class="decision-block" style="font-size:20px; line-height:1.6; margin:20px 0;">
+
+   <p>
+     Most people don’t define their digital reputation.
+    They react to it over time.
+  </p>
+
+  <p>
+    <strong>Protect Your Brand is how you take control of it.</strong>
+  </p>
+</div>
+
         <div class="cta-card">
   <h3>Your Score Is a Signal. Now Strengthen What It Becomes.</h3>
 
@@ -860,7 +889,7 @@ SURVEY_HTML = r"""
 
   <div class="btn-row">
     <button class="primary-btn" id="ctaBtn" type="button">
-      See How the Challenge Works
+      Take Control of Your Reputation
     </button>
     <button class="secondary-btn" id="retakeBtn" type="button">
       Retake My Score
