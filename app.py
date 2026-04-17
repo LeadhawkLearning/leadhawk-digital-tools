@@ -882,7 +882,7 @@ SURVEY_HTML = r"""
   </p>
 
   <p class="cta-highlight">
-    See how The Challenge works and how it helps you take control of what your score becomes.
+    See how the challenge works and how it helps you take control of what your score becomes.
   </p>
 
   <div class="btn-row">
