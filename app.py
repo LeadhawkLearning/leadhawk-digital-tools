@@ -877,7 +877,7 @@ SURVEY_HTML = r"""
 </p>
 
   <p class="cta-copy">
-    <span style="color:#F2C94C; font-weight:700;">Protect Your Brand</span> is a practical, guided challenge that helps you define what you stand for,
+    <span style="color:#F2C94C; font-weight:700;">The Protect Your Brand Challenge</span> is a practical, guided challenge that helps you define what you stand for,
     evaluate your online behavior, and build habits that strengthen your digital reputation.
   </p>
 
