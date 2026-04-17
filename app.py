@@ -874,7 +874,7 @@ SURVEY_HTML = r"""
   </p>
 
   <p>
-    <strong>Protect Your Brand is how you take control of it of your reputation.</strong>
+    <strong>Protect Your Brand is how you take control of your reputation.</strong>
   </p>
 </div>
 
