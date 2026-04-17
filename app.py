@@ -1224,7 +1224,7 @@ CHECKER_HTML = r"""
       margin-top: 14px;
       font-weight: 700;
       cursor: pointer;
-      font-size: 28px;
+      font-size: 22px;
       font-family: 'Roboto', Arial, sans-serif;
     }
 
