@@ -801,7 +801,7 @@ SURVEY_HTML = r"""
             Leadhawk Learning
           </div>
 
-          <div class="result-score">Your Digital Score</div>
+          <div class="result-score">Your Digital Reputation Score</div>
           <div class="score-number">${totalScore}</div>
 
           <div class="score-bar-wrap">
@@ -882,7 +882,7 @@ SURVEY_HTML = r"""
   </p>
 
   <p class="cta-highlight">
-    See how the challenge works and how it helps you take control of what your score becomes.
+    See how The Challenge works and how it helps you take control of what your score becomes.
   </p>
 
   <div class="btn-row">
