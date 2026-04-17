@@ -819,49 +819,47 @@ SURVEY_HTML = r"""
             </div>
           </div>
 
-         <div class="band-title">${escapeHtml(band.title)}</div>
+   <div class="band-title">${escapeHtml(band.title)}</div>
 
-          <p class="interpretation">
-          This result reflects how your content may be interpreted,
-          not necessarily what you intended.
-          </p>
+<p class="interpretation" style="font-size:18px; line-height:1.5;">
+  This result reflects how your content may be interpreted,
+  not necessarily what you intended.
+</p>
 
-        <p class="interpretation">
-        Most people score between 60–80.
-        Strong scores still require consistency to maintain and protect over time.
-        </p>
-        <p class="interpretation" style="font-size:18px; line-height:1.5;">
-        
-        <p class="starting-point">This score is a snapshot, not the full story.</p>
+<p class="interpretation" style="font-size:18px; line-height:1.5;">
+  Most people score between 60–80.
+  Scores outside that range still benefit from awareness, consistency, and intentional choices over time.
+</p>
 
-          <p class="lede">${escapeHtml(band.interpretation)}</p>
+<p class="starting-point">This score is a snapshot, not the full story.</p>
 
-          <div class="panel" style="margin-top:18px;">
-            <h3>What this means</h3>
-            <p>${escapeHtml(band.meaning)}</p>
-          </div>
+<p class="lede">${escapeHtml(band.interpretation)}</p>
 
-          <div class="result-grid">
-            <div class="panel">
-              <h3>${escapeHtml(leftPanelTitle)}</h3>
-              <ul>${leftPanelItems.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-            </div>
+<div class="panel" style="margin-top:18px;">
+  <h3>What this means</h3>
+  <p>${escapeHtml(band.meaning)}</p>
+</div>
 
-            <div class="panel">
-              <h3>Strengths detected</h3>
-              <ul>${strengths.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
-            </div>
-          </div>
+<div class="result-grid">
+  <div class="panel">
+    <h3>${escapeHtml(leftPanelTitle)}</h3>
+    <ul>${leftPanelItems.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+  </div>
 
-         <div class="decision-block">
-         <p>
-         Your score shows how you’re being seen.
-         The real question is whether that consistently reflects who you want to be.
-        </p>
-        <div class="decision-block" style="font-size:20px; line-height:1.6; margin:20px 0;">
+  <div class="panel">
+    <h3>Strengths detected</h3>
+    <ul>${strengths.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
+  </div>
+</div>
 
-   <p>
-     Most people don’t define their digital reputation.
+<div class="decision-block" style="font-size:20px; line-height:1.6; margin:20px 0;">
+  <p>
+    Your score shows how you’re being seen.
+    The real question is whether that consistently reflects who you want to be.
+  </p>
+
+  <p>
+    Most people don’t define their digital reputation.
     They react to it over time.
   </p>
 
