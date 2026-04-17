@@ -469,6 +469,7 @@ SURVEY_HTML = r"""
       border-color: rgba(255, 255, 255, 0.26);
       font-weight: 500;
       padding: 14px 24px;
+      margin-left: 12px;
     }
 
     .fade-enter { animation: fadeIn 0.24s ease; }
