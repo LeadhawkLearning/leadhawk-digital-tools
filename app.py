@@ -491,14 +491,22 @@ SURVEY_HTML = r"""
       .result-grid { grid-template-columns: 1fr 1fr; }
     }
 
-    @media (max-width: 480px) {
-      .content { padding: 22px 16px 22px; }
-      .question-card, .panel, .intro-panel, .cta-card { padding: 16px; }
-      .primary-btn, .secondary-btn, .answer-btn { width: 100%; }
-      .question-actions, .btn-row {
+ @media (max-width: 480px) {
+    .content { padding: 22px 16px 22px; }
+    .question-card, .panel, .intro-panel, .cta-card { padding: 16px; }
+    .primary-btn, .secondary-btn, .answer-btn { width: 100%; }
+
+    .question-actions, .btn-row {
         flex-direction: column;
         align-items: stretch;
-      }
+    }
+
+    .cta-card .primary-btn {
+        font-size: 18px;
+        padding: 14px 20px;
+    }
+}
+      
       .score-marker {
         min-width: 48px;
         height: 48px;
