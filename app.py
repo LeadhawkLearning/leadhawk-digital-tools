@@ -491,7 +491,7 @@ SURVEY_HTML = r"""
       .result-grid { grid-template-columns: 1fr 1fr; }
     }
 
- @media (max-width: 480px) {
+@media (max-width: 480px) {
     .content { padding: 22px 16px 22px; }
     .question-card, .panel, .intro-panel, .cta-card { padding: 16px; }
     .primary-btn, .secondary-btn, .answer-btn { width: 100%; }
@@ -499,6 +499,16 @@ SURVEY_HTML = r"""
     .question-actions, .btn-row {
         flex-direction: column;
         align-items: stretch;
+    }
+
+    .cta-card h3 {
+        font-size: 18px;
+        line-height: 1.2;
+        margin-bottom: 12px;
+    }
+
+    .cta-card .cta-copy {
+        margin-bottom: 10px;
     }
 
     .cta-card .primary-btn {
