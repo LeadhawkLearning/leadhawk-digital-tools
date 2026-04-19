@@ -525,7 +525,7 @@ SURVEY_HTML = r"""
   /* Button sizing for mobile */
   .cta-card .primary-btn {
     font-size: 18px;
-    padding: 14px 20px;
+    padding: 12px 20px;
   }
 }
       
