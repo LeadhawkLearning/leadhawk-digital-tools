@@ -497,29 +497,33 @@ SURVEY_HTML = r"""
     }
 
 @media (max-width: 480px) {
-    .content { padding: 22px 16px 22px; }
-    .question-card, .panel, .intro-panel, .cta-card { padding: 16px; }
-    .primary-btn, .secondary-btn, .answer-btn { width: 100%; }
+  .content { padding: 22px 16px 22px; }
 
-    .question-actions, .btn-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
+  .question-card, .panel, .intro-panel, .cta-card {
+    padding: 16px;
+  }
 
-    .cta-card h3 {
-        font-size: 18px;
-        line-height: 1.2;
-        margin-bottom: 12px;
-    }
+  /* CTA layout fix */
+  .cta-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
 
-    .cta-card .cta-copy {
-        margin-bottom: 10px;
-    }
+  .cta-card .primary-btn,
+  .cta-card .secondary-btn {
+    width: 100%;
+  }
 
-    .cta-card .primary-btn {
-        font-size: 18px;
-        padding: 14px 20px;
-    }
+  .cta-card .secondary-btn {
+    margin-top: 10px;
+  }
+
+  /* Button sizing for mobile */
+  .cta-card .primary-btn {
+    font-size: 18px;
+    padding: 14px 20px;
+  }
 }
       
       .score-marker {
