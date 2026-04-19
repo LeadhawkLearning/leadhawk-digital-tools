@@ -515,9 +515,11 @@ SURVEY_HTML = r"""
 }
 
 .cta-card .secondary-btn {
-    width: auto;
+    width: 65%;
     align-self: center;
     margin-top: 10px;
+    padding: 8px 14px;
+    font-size: 15px;
 }
 
   /* Button sizing for mobile */
