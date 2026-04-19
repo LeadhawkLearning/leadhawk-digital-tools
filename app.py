@@ -510,14 +510,15 @@ SURVEY_HTML = r"""
     align-items: stretch;
   }
 
-  .cta-card .primary-btn,
-  .cta-card .secondary-btn {
+ .cta-card .primary-btn {
     width: 100%;
-  }
+}
 
-  .cta-card .secondary-btn {
+.cta-card .secondary-btn {
+    width: auto;
+    align-self: center;
     margin-top: 10px;
-  }
+}
 
   /* Button sizing for mobile */
   .cta-card .primary-btn {
