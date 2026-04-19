@@ -448,7 +448,7 @@ SURVEY_HTML = r"""
     background: var(--gold);
     color: var(--navy);
     border: none;
-    border-radius: 14px;
+    border-radius: 12px;
     box-shadow: none;
     font-weight: 600;
     font-size: 22px;
@@ -456,6 +456,11 @@ SURVEY_HTML = r"""
     padding: 16px 32px;
     white-space: nowrap;
     letter-spacing: 0.2px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .cta-card .primary-btn:hover {
