@@ -863,15 +863,16 @@ SURVEY_HTML = r"""
    <div class="band-title">${escapeHtml(band.title)}</div>
 
 <p class="interpretation" style="font-size:18px; line-height:1.5;">
-  This result reflects how your content may be interpreted,
-  not necessarily what you intended.
+    This result reflects how your content may be interpreted, not necessarily what you intended.
 </p>
 
-<p class="interpretation" style="font-size:18px; line-height:1.5;">
-  Average score: 60–80. Every score improves with awareness, consistency, and intentional choices.
+<p style="font-size:18px; line-height:1.5;">
+    <strong>Average scores: 60–80.</strong> Scores improve with awareness, consistency, and intentional choices.
 </p>
 
-<p class="starting-point">This score is a snapshot, not the full story.</p>
+<p class="snapshot-note" style="font-size:18px; line-height:1.5;">
+    <strong>This score is a snapshot, not the full story.</strong>
+</p>
 
 <p class="lede">${escapeHtml(band.interpretation)}</p>
 
