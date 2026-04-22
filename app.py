@@ -1763,6 +1763,9 @@ CHECKER_HTML = r"""
     font-weight: 400;
     color: #334155;
     line-height: 1.35;
+
+   .steps-list {
+    background: red !important;
 }
 
 </style>
