@@ -953,7 +953,7 @@ SURVEY_HTML = r"""
       `;
 
       document.getElementById("ctaBtn").addEventListener("click", function() {
-      window.location.href = `https://www.leadhawklearning.com/protect-your-brand-1`;
+      window.location.href = `https://leadhawk-university.teachable.com/p/protecting-your-brand`;
       });
 
       document.getElementById("retakeBtn").addEventListener("click", () => {
