@@ -912,28 +912,13 @@ SURVEY_HTML = r"""
 <div class="next-steps-block">
   <h3>Here's how you take control:</h3>
 
-  <ul class="steps-list">
-    <li>
-      <span class="step-title">Define your values:</span>
-      <span class="step-desc">Build your personal decision filter</span>
-    </li>
-    <li>
-      <span class="step-title">Compare your behavior:</span>
-      <span class="step-desc">Align your actions with what you stand for</span>
-    </li>
-    <li>
-      <span class="step-title">Get outside perspective:</span>
-      <span class="step-desc">See how others see you</span>
-    </li>
-    <li>
-      <span class="step-title">Prepare for pressure:</span>
-      <span class="step-desc">Handle high-risk moments with intention</span>
-    </li>
-    <li>
-      <span class="step-title">Take ownership:</span>
-      <span class="step-desc">Decide how you're seen going forward</span>
-    </li>
-  </ul>
+  <ul>
+  <li><strong>Define your values:</strong> Build your personal decision filter</li>
+  <li><strong>Compare your behavior:</strong> Align your actions with what you stand for</li>
+  <li><strong>Get outside perspective:</strong> See how others see you</li>
+  <li><strong>Prepare for pressure:</strong> Handle high-risk moments with intention</li>
+  <li><strong>Take ownership:</strong> Decide how you're seen going forward</li>
+</ul>
 
   <p class="next-steps-note">Takes ~60 minutes. Private. No grading. Start immediately.</p>
 </div>
