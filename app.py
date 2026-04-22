@@ -909,6 +909,18 @@ SURVEY_HTML = r"""
   </p>
 </div>
 
+<div class="next-steps-block">
+  <h3>What happens when you take the Protect Your Brand Challenge:</h3>
+ <ul>
+  <li><strong>Define your values:</strong> Create your personal decision filter</li>
+  <li><strong>Compare your behavior:</strong> See how your actions align with what you stand for</li>
+  <li><strong>Get outside perspective:</strong> Hear how others experience your online presence</li>
+  <li><strong>Prepare for pressure:</strong> Plan responses before high-risk moments happen</li>
+  <li><strong>Take ownership:</strong> Decide how you want to be seen moving forward</li>
+</ul>
+  <p class="next-steps-note">Takes ~60 minutes. Private. No grading.  Start immediately.</p>
+</div>
+
         <div class="cta-card">
   <h3>You’ve Seen Your Score. Now Take Control of What It Becomes.</h3>
 
