@@ -522,11 +522,15 @@ SURVEY_HTML = r"""
     font-size: 15px;
 }
 
-  /* Button sizing for mobile */
-  .cta-card .primary-btn {
-    font-size: 18px;
-    padding: 12px 20px;
-  }
+ .cta-card .primary-btn {
+    width: 100%;
+    font-size: 17px;
+    padding: 12px 16px;
+    white-space: normal;
+    line-height: 1.25;
+    text-align: center;
+    justify-content: center;
+}
 }
       
       .score-marker {
