@@ -894,10 +894,10 @@ SURVEY_HTML = r"""
 </div>
 
 <div class="decision-block" style="font-size:20px; line-height:1.6; margin:20px 0;">
-  <p>
-    Your score shows how you’re being seen.
-    The real question is whether that consistently reflects who you want to be, especially when others are making decisions based on it.
-  </p>
+
+<p>
+Does this score reflect how you want to be seen by others and by yourself?
+</p>
 
   <p>
     Most people don’t define their digital reputation.
@@ -905,12 +905,12 @@ SURVEY_HTML = r"""
   </p>
 
   <p>
-    <strong>Protect Your Brand is how you take control of your reputation.</strong>
-  </p>
+<strong>The Protect Your Brand Challenge is how you take control of your reputation.</strong>
+</p>
 </div>
 
 <div class="next-steps-block">
-  <h3>Here's how you take control:</h3>
+  <h3>The Challenge guides you to:</h3>
 
   <ul>
   <li><strong>Define your values:</strong> Build your personal decision filter</li>
@@ -927,22 +927,16 @@ SURVEY_HTML = r"""
   <h3>You’ve Seen Your Score. Now Take Control of What It Becomes.</h3>
 
   <p class="cta-copy">
-  Your results show where your digital reputation stands today.
-  The <span style="color:#F2C94C; font-weight:700;">next step is taking control</span> to make sure it aligns with your future.
+Your results show where your digital reputation stands—and the next step is taking control of what it becomes.
 </p>
 
   <p class="cta-copy">
-    <span style="color:#F2C94C; font-weight:700;">The Protect Your Brand Challenge</span> is a practical, guided challenge that helps you define what you stand for,
-    evaluate your online behavior, and build habits that strengthen your digital reputation.
-  </p>
-
-  <p class="cta-highlight">
-    See how the challenge works and how it helps you take control of what your score becomes.
-  </p>
+Take control of your digital reputation with a practical, guided challenge that helps you define what you stand for, evaluate your online behavior, and build habits that strengthen how you're seen.
+</p>
 
   <div class="btn-row">
     <button class="primary-btn" id="ctaBtn" type="button">
-      Take Control of Your Reputation
+      Start the Protect Your Brand Challenge
     </button>
     <button class="secondary-btn" id="retakeBtn" type="button">
       Retake My Score
