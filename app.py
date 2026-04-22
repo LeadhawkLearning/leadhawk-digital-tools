@@ -868,8 +868,7 @@ SURVEY_HTML = r"""
 </p>
 
 <p class="interpretation" style="font-size:18px; line-height:1.5;">
-  Most people score between 60–80.
-  Scores outside that range still benefit from awareness, consistency, and intentional choices over time.
+  Average score: 60–80. Every score improves with awareness, consistency, and intentional choices.
 </p>
 
 <p class="starting-point">This score is a snapshot, not the full story.</p>
