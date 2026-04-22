@@ -910,7 +910,7 @@ Does this score reflect how you want to be seen by others and by yourself?
 </div>
 
 <div class="next-steps-block">
-  <h3>The Challenge guides you to:</h3>
+  <p class="next-steps-heading">The Challenge guides you to:</p>
 
   <ul>
   <li><strong>Define your values:</strong> Build your personal decision filter</li>
