@@ -571,32 +571,32 @@ SURVEY_HTML = r"""
       risk: { "Always": 0, "Sometimes": 3, "Rarely": 7, "Never": 10 }
     };
 
-    const SCORE_BANDS = [
-      {
-        min: 85, max: 100,
-        title: "Strong Reputation Signals",
-        interpretation: "Your answers suggest that your online habits are showing positive signals tied to judgment, self-control, and future opportunity.",
-        meaning: "A strong score is a good sign — but reputation is built through patterns. The strongest digital reputations come from awareness, consistency, and intentional choices over time."
-      },
-      {
-        min: 70, max: 84,
-        title: "Mostly Safe, Some Risk",
-        interpretation: "Your answers show some healthy digital habits, but there are still areas that could create concern.",
-        meaning: "You may not be in major trouble — but you may be more exposed than you think."
-      },
-      {
-        min: 50, max: 69,
-        title: "Reputation Vulnerable",
-        interpretation: "Your answers suggest that your digital presence may contain patterns that could hurt how others view your maturity, judgment, and readiness.",
-        meaning: "This is the range where people often think they’re fine, but still have visible habits or content that create concern."
-      },
-      {
-        min: 0, max: 49,
-        title: "High Digital Risk",
-        interpretation: "Your answers suggest that your current digital habits may be creating avoidable risk.",
-        meaning: "This does not define you — but it does signal that your digital reputation may need attention now, not later."
-      }
-    ];
+  const SCORE_BANDS = [
+  {
+    min: 85, max: 100,
+    title: "Strong Reputation Signals",
+    interpretation: "Your answers suggest that your online habits are showing positive signals tied to judgment, self-control, and future opportunity.",
+    meaning: "You’re showing strong signals, but your reputation is built through consistency. What you do next determines how it holds up over time."
+  },
+  {
+    min: 70, max: 84,
+    title: "Mostly Safe, Some Risk",
+    interpretation: "Your answers show some healthy digital habits, but there are still areas that could create concern.",
+    meaning: "You may not be in major trouble—but you may be more exposed than you think. Protecting your brand means tightening the habits that shape how you're seen."
+  },
+  {
+    min: 50, max: 69,
+    title: "Reputation Vulnerable",
+    interpretation: "Your answers suggest that your digital presence may contain patterns that could hurt how others view your maturity, judgment, and readiness.",
+    meaning: "You may feel fine, but others may still see patterns that raise concern. This is where small habits can shape how your brand is perceived."
+  },
+  {
+    min: 0, max: 49,
+    title: "High Digital Risk",
+    interpretation: "Your answers suggest that your current digital habits may be creating avoidable risk.",
+    meaning: "This does not define you—but it does signal that your digital reputation needs attention now. Protecting your brand starts with taking control before others define it for you."
+  }
+];
 
     const RISK_FLAGS = {
       1: "Limited pause before posting",
