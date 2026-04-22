@@ -1686,8 +1686,9 @@ CHECKER_HTML = r"""
 .next-steps-block h3 {
     margin: 0 0 8px;
     color: var(--navy);
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.3;
 }
 
 .next-steps-block ul {
