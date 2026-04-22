@@ -904,8 +904,8 @@ Does this score reflect how you want to be seen by others and by yourself?
     They react to it over time.
   </p>
 
-  <p>
-<strong>The Protect Your Brand Challenge is how you take control of your reputation.</strong>
+ <p>
+<strong>The Protect Your Brand Challenge</strong> is how you take control of your reputation.
 </p>
 </div>
 
@@ -924,7 +924,7 @@ Does this score reflect how you want to be seen by others and by yourself?
 </div>
 
         <div class="cta-card">
-  <h3>You’ve Seen Your Score. Now Take Control of What It Becomes.</h3>
+  <h3>You’ve Seen Your Score. Now Take Control of It.</h3>
 
   <p class="cta-copy">
 Your results show where your digital reputation stands—and the next step is taking control of what it becomes.
