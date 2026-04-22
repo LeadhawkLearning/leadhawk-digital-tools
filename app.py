@@ -1687,7 +1687,7 @@ CHECKER_HTML = r"""
     margin: 0 0 8px;
     color: var(--navy);
     font-size: 1rem;
-    font-weight: 800;
+    font-weight: 500;
 }
 
 .next-steps-block ul {
