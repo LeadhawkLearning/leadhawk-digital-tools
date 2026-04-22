@@ -1729,6 +1729,34 @@ CHECKER_HTML = r"""
     font-size: 0.9rem;
 }
 
+/* Step alignment layout */
+.steps-list {
+    list-style: disc;
+    padding-left: 18px;
+    margin: 0 0 8px;
+}
+
+.steps-list li {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 6px;
+    align-items: flex-start;
+}
+
+/* Left side (bold action) */
+.step-title {
+    font-weight: 800;
+    min-width: 180px;
+    color: var(--navy);
+}
+
+/* Right side (description) */
+.step-desc {
+    font-weight: 400;
+    color: #334155;
+    line-height: 1.35;
+}
+
 </style>
 </head>
 <body>
