@@ -1676,8 +1676,43 @@ CHECKER_HTML = r"""
       .cta { font-size: 18px; }
       .score-carry-main, .graduate-main { font-size: 21px; }
       .next-step-card h3 { font-size: 1.45rem; }
-    }
-  </style>
+
+/* Next Steps Block Styling */
+
+.next-steps-block {
+    margin: 18px 0 16px;
+    padding: 14px 16px;
+    background: #F8FAFC;
+    border: 1px solid #CBD5E1;
+    border-radius: 14px;
+}
+
+.next-steps-block h3 {
+    margin: 0 0 8px;
+    color: var(--navy);
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.next-steps-block ul {
+    margin: 0 0 8px 18px;
+    padding: 0;
+}
+
+.next-steps-block li {
+    margin-bottom: 6px;
+    line-height: 1.35;
+    font-size: 0.92rem;
+}
+
+.next-steps-note {
+    margin: 0;
+    font-weight: 700;
+    color: var(--navy);
+    font-size: 0.9rem;
+}
+
+</style>
 </head>
 <body>
 
