@@ -1730,23 +1730,31 @@ CHECKER_HTML = r"""
 }
 
 /* Step alignment layout */
+
 .steps-list {
-    list-style: disc;
-    padding-left: 18px;
+    list-style: none;
+    padding-left: 0;
     margin: 0 0 8px;
 }
 
 .steps-list li {
-    display: flex;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: 18px 180px 1fr;
+    column-gap: 10px;
     margin-bottom: 6px;
-    align-items: flex-start;
+    align-items: start;
+}
+
+.steps-list li::before {
+    content: "•";
+    color: var(--navy);
+    font-weight: 700;
+    line-height: 1.35;
 }
 
 /* Left side (bold action) */
 .step-title {
     font-weight: 800;
-    min-width: 180px;
     color: var(--navy);
 }
 
