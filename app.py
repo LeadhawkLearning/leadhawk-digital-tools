@@ -735,7 +735,7 @@ const SCORE_BANDS = [
             <span class="brand-badge" aria-hidden="true"></span>
             Leadhawk Learning
           </div>
-          <h1>What’s Your Digital Score?</h1>
+          <h1>What’s Your Online Reputation Score?</h1>
           <p class="lede">Take this quick assessment to see how your online habits may be helping — or hurting — your future.</p>
 
           <div class="intro-panel">
