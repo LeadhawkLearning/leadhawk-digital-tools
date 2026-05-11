@@ -22,7 +22,7 @@ SURVEY_HTML = r"""
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What's Your Digital Score? | Leadhawk Learning</title>
+  <title>What's Your Online Reputation Score? | Leadhawk Learning</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
 
@@ -565,7 +565,7 @@ SURVEY_HTML = r"""
       { id: 7, type: "risk", text: "I have shared jokes, memes, screenshots, or content that could be seen as offensive, disrespectful, sexual, threatening, or inappropriate." },
       { id: 8, type: "positive", text: "My online activity supports my goals more than it threatens them." },
       { id: 9, type: "positive", text: "I would be comfortable if a parent, coach, admissions officer, employer, or teammate reviewed my profile today." },
-      { id: 10, type: "positive", text: "I am actively building a digital reputation that helps create opportunities for me." }
+      { id: 10, type: "positive", text: "I am actively building an online reputation that helps create opportunities for me." }
     ];
 
     const ANSWERS = ["Always", "Sometimes", "Rarely", "Never"];
@@ -585,20 +585,20 @@ const SCORE_BANDS = [
   {
     min: 70, max: 84,
     title: "Mostly Safe, Some Risk",
-    interpretation: "Your answers show some healthy digital habits, but there are still areas that could create concern.",
+    interpretation: "Your answers show some healthy online habits, but there are still areas that could create concern.",
     meaning: "You may not be in major trouble—but you may be more exposed than you think. Strengthening your habits helps protect how you're seen."
   },
   {
     min: 50, max: 69,
     title: "Reputation Vulnerable",
-    interpretation: "Your answers suggest that your digital presence may contain patterns that could hurt how others view your maturity, judgment, and readiness.",
+    interpretation: "Your answers suggest that your online presence may contain patterns that could hurt how others view your maturity, judgment, and readiness.",
     meaning: "You may feel fine—but others may still see patterns that raise concern. This is where small habits shape how your brand is perceived."
   },
   {
     min: 0, max: 49,
     title: "High Digital Risk",
-    interpretation: "Your answers suggest that your current digital habits may be creating avoidable risk.",
-    meaning: "You’re seeing signals that your digital reputation needs attention now. Taking control early prevents others from defining it for you."
+    interpretation: "Your answers suggest that your current online habits may be creating avoidable risk.",
+    meaning: "You’re seeing signals that your online reputation needs attention now. Taking control early prevents others from defining it for you."
   }
 ];
 
@@ -612,7 +612,7 @@ const SCORE_BANDS = [
       7: "Shared content may be viewed as offensive or inappropriate",
       8: "Online habits may be working against long-term goals",
       9: "Public review by others may feel uncomfortable",
-      10: "Digital reputation may not be built with intention"
+      10: "Online reputation may not be built with intention"
     };
 
     const STRENGTH_FLAGS = {
@@ -629,7 +629,7 @@ const SCORE_BANDS = [
       "You appear to pause and think before posting",
       "Your profile seems aligned with your future goals",
       "You show signs of maturity and self-control online",
-      "You appear intentional about managing your digital reputation"
+      "You appear intentional about managing your online reputation"
     ];
 
     const state = {
@@ -846,7 +846,7 @@ const SCORE_BANDS = [
             Leadhawk Learning
           </div>
 
-          <div class="result-score">Your Digital Reputation Score</div>
+          <div class="result-score">Your Online Reputation Score</div>
           <div class="score-number">${totalScore}</div>
 
           <div class="score-bar-wrap">
@@ -1768,10 +1768,10 @@ CHECKER_HTML = r"""
         <p class="tagline">
           {% if graduate %}
             <span class="highlight">Graduate Access activated.</span><br>
-            Use this tool anytime to test how your digital behavior may be interpreted before you post.
+            Use this tool anytime to test how your online behavior may be interpreted before you post.
           {% else %}
             <span class="highlight">Before you post it, check it.</span><br>
-            See how different people in your world might interpret your digital behavior.
+            See how different people in your world might interpret your online behavior.
           {% endif %}
         </p>
 
@@ -1939,7 +1939,7 @@ CHECKER_HTML = r"""
     function renderUpgradeBlock(pyUrl) {
       return `
         <div class="next-step-card">
-          <h3><span class="next-step-highlight">Next Step:</span> <span class="next-step-title">Strengthen Your Digital Reputation</span></h3>
+          <h3><span class="next-step-highlight">Next Step:</span> <span class="next-step-title">Strengthen Your Online Reputation</span></h3>
           <p class="next-step-copy">
             You’ve used your two Reputation Signal Tests. Continue with the
             <span class="next-step-inline">Protect Your Brand Challenge</span>
@@ -2052,7 +2052,7 @@ CHECKER_HTML = r"""
     function strongBehaviorGuideHtml() {
       return `
         <div>
-          <h3>What Strong Digital Behavior Looks Like</h3>
+          <h3>What Strong Online Behavior Looks Like</h3>
           <ul>
             <li>Pauses before posting when emotional.</li>
             <li>Uses language that sounds respectful, not reactive.</li>
@@ -2071,7 +2071,7 @@ CHECKER_HTML = r"""
         <div class="insight-intro">Choose one section to explore deeper insight:</div>
         <div class="insight-tab-row">
           <button type="button" class="insight-tab" id="combinedSignalsTab">View My Combined Signals</button>
-          <button type="button" class="insight-tab" id="strongBehaviorTab">Signals of a Strong Digital Reputation</button>
+          <button type="button" class="insight-tab" id="strongBehaviorTab">Signals of a Strong Online Reputation</button>
         </div>
 
         <div class="insight-content-panel" id="combinedSignalsPanel">
@@ -2173,7 +2173,7 @@ CHECKER_HTML = r"""
         results.innerHTML = `
           ${badgeHtml}
 
-          <div class="signal-title">Digital Reputation Signal: <span class="score-number">${data.strength_score}</span>/100</div>
+          <div class="signal-title">Online Reputation Signal: <span class="score-number">${data.strength_score}</span>/100</div>
           ${signalLoopText}
           <div class="category-line"><strong>Category:</strong> ${data.category}</div>
           <div class="summary">${data.result_summary}</div>
@@ -2226,7 +2226,7 @@ CHECKER_HTML = r"""
 
           <div class="share-box">
             <strong>Challenge a Friend</strong><br><br>
-            "I just ran my post through the Leadhawk Digital Reputation Assessment.<br>
+            "I just ran my post through the Leadhawk Online Reputation Assessment.<br>
             Strength Score: ${data.strength_score}/100.<br>
             Before you post it, check it.<br>
             Try it: ${location.href}"
@@ -2851,8 +2851,8 @@ def build_carry_message(score):
 def render_checker_page(graduate=False, carry_score=None):
     return render_template_string(
         CHECKER_HTML,
-        page_title="Graduate Access: Digital Reputation Assessment" if graduate else "Leadhawk Digital Reputation Assessment",
-        header_title="Graduate Access: Digital Reputation Assessment" if graduate else "Leadhawk Digital Reputation Assessment",
+        page_title="Graduate Access: Online Reputation Assessment" if graduate else "Leadhawk Online Reputation Assessment",
+        header_title="Graduate Access: Online Reputation Assessment" if graduate else "Leadhawk Online Reputation Assessment",
         logo_url=url_for("logo"),
         pyb_url=PYB_CHECKOUT_URL,
         carry_score=carry_score,
@@ -2943,7 +2943,7 @@ def logo():
 @app.route("/manifest.json")
 def manifest():
     return jsonify({
-        "name": "Leadhawk Digital Reputation Tools",
+        "name": "Leadhawk Online Reputation Tools",
         "short_name": "Leadhawk",
         "start_url": "/survey",
         "display": "standalone",
