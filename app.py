@@ -904,12 +904,12 @@ Does this score reflect how you want to be seen by others and by yourself?
 </p>
 
   <p>
-    Most people don’t define their digital reputation.
-    They react to it over time.
+    Most people don't intentionally build their online reputation.  
+    They react to it after it becomes a problem.
   </p>
 
  <p>
-<strong>The Protect Your Brand Challenge</strong> is how you take control of your reputation.
+<strong>The Next Step</strong> is improving how your online reputation reflects who you are.
 </p>
 </div>
 
@@ -931,11 +931,11 @@ Does this score reflect how you want to be seen by others and by yourself?
   <h3>You’ve Seen Your Score. Now Take Control of It.</h3>
 
   <p class="cta-copy">
-Your results show where your digital reputation stands—and the next step is taking control of what it becomes.
+Your results show where your online reputation stands and the next step is taking control of what it becomes.
 </p>
 
   <p class="cta-copy">
-Take control of your digital reputation with a practical, guided challenge that helps you define what you stand for, evaluate your online behavior, and build habits that strengthen how you're seen.
+Take control of your online reputation with a practical, guided challenge that helps you define what you stand for, evaluate your online behavior, and build habits that strengthen how you're seen.
 </p>
 
   <div class="btn-row">
