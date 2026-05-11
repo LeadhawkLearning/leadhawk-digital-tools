@@ -940,7 +940,7 @@ Take control of your digital reputation with a practical, guided challenge that 
 
   <div class="btn-row">
     <button class="primary-btn" id="ctaBtn" type="button">
-      Start the Protect Your Brand Challenge
+      Improve Your Score in 60 Minutes
     </button>
     <button class="secondary-btn" id="retakeBtn" type="button">
       Retake My Score
