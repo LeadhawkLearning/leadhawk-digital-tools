@@ -739,8 +739,8 @@ const SCORE_BANDS = [
           <p class="lede">Take this quick assessment to see how your online habits may be helping — or hurting — your future.</p>
 
           <div class="intro-panel">
-            <p>Takes about 30 sec. Results are private. You’ll get a score, a quick read on your current digital reputation habits, and a clear next step.</p>
-            <p class="subtle">This quick self-check is designed to raise awareness. It’s a starting point for better digital decisions.</p>
+            <p>Takes about 30 sec. Results are private. You’ll get a score, a quick read on your current online reputation habits, and a clear next step.</p>
+            <p class="subtle">This quick self-check is designed to raise awareness. It’s a starting point for better online decisions.</p>
           </div>
 
           <div class="btn-row">
@@ -836,7 +836,7 @@ const SCORE_BANDS = [
       const markerPosition = getScoreMarkerPosition(totalScore);
       const isStrongScore = totalScore >= 85;
 
-      const leftPanelTitle = isStrongScore ? "What’s working in your digital habits" : "What may be affecting your score";
+      const leftPanelTitle = isStrongScore ? "What’s working in your online habits" : "What Could Be Lowering Your Score";
       const leftPanelItems = isStrongScore ? REINFORCEMENT_FLAGS : risks;
 
       app.innerHTML = `
@@ -881,7 +881,7 @@ const SCORE_BANDS = [
 <p class="lede">${escapeHtml(band.interpretation)}</p>
 
 <div class="panel" style="margin-top:18px;">
-  <h3>What this means</h3>
+  <h3>What This Means</h3>
   <p>${escapeHtml(band.meaning)}</p>
 </div>
 
@@ -892,7 +892,7 @@ const SCORE_BANDS = [
   </div>
 
   <div class="panel">
-    <h3>Strengths detected</h3>
+    <h3>Strengths Detected</h3>
     <ul>${strengths.map(item => `<li>${escapeHtml(item)}</li>`).join("")}</ul>
   </div>
 </div>
@@ -931,7 +931,7 @@ Does this score reflect how you want to be seen by others and by yourself?
   <h3>You’ve Seen Your Score. Now Take Control of It.</h3>
 
   <p class="cta-copy">
-Your results show where your online reputation stands and the next step is taking control of what it becomes.
+Your score revealed where your online reputation stands.  Now improve wht it becomes.
 </p>
 
   <p class="cta-copy">
