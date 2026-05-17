@@ -914,14 +914,14 @@ Does this score reflect how you want to be seen by others and by yourself?
 </div>
 
 <div class="next-steps-block">
-  <p class="next-steps-heading">The Challenge guides you to:</p>
+  <p class="next-steps-heading">Improve your online reputation by:</p>
 
   <ul>
-  <li><strong>Define your values:</strong> Build your personal decision filter</li>
-  <li><strong>Compare your behavior:</strong> Align your actions with what you stand for</li>
-  <li><strong>Get outside perspective:</strong> See how others see you</li>
-  <li><strong>Prepare for pressure:</strong> Handle high-risk moments with intention</li>
-  <li><strong>Take ownership:</strong> Decide how you're seen going forward</li>
+  <li><strong>Defining your values:</strong> Build your personal decision filter</li>
+  <li><strong>Comparing your behavior:</strong> Align your actions with what you stand for</li>
+  <li><strong>Getting outside perspective:</strong> See how others see you</li>
+  <li><strong>Preparing for pressure:</strong> Handle high-risk moments with intention</li>
+  <li><strong>Taking ownership:</strong> Decide how you're seen going forward</li>
 </ul>
 
   <p class="next-steps-note">Takes ~60 minutes. Private. No grading. Start immediately.</p>
@@ -931,7 +931,7 @@ Does this score reflect how you want to be seen by others and by yourself?
   <h3>You’ve Seen Your Score. Now Take Control of It.</h3>
 
   <p class="cta-copy">
-Your score revealed where your online reputation stands.  Now improve wht it becomes.
+Your score revealed where your online reputation stands.  Now improve what it becomes.
 </p>
 
   <p class="cta-copy">
